@@ -1,0 +1,198 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.94",
+	"appid": "wx101b59807dae1b75",
+	"projectname": "yuefanba",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "profile",
+					"pathName": "pages/profile/profile",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "mine",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "收藏",
+					"pathName": "pages/favorites/favorites",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人主页（编辑）",
+					"pathName": "pages/edit-profile/edit-profile",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息",
+					"pathName": "pages/message/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "聊天",
+					"pathName": "pages/chat/chat",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "订单 - order",
+					"pathName": "pages/order/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更换手机号",
+					"pathName": "pages/modify-phone/phase-one",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "更换手机号2",
+					"pathName": "pages/modify-phone/phase-two",
+					"query": "phone=17620444654"
+				},
+				{
+					"id": -1,
+					"name": "匹配",
+					"pathName": "pages/match/match",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "订单详情 - order-detail",
+					"pathName": "pages/order-detail/order-detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/recharge/recharge",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "明细",
+					"pathName": "pages/bill/bill",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "吃货币",
+					"pathName": "pages/token/token",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "约饭",
+					"pathName": "pages/invite/invite",
+					"query": ""
+				},
+				{
+					"id": 15,
+					"name": "赚钱契约单",
+					"pathName": "pages/contract/contract",
+					"query": "type=make"
+				},
+				{
+					"id": 16,
+					"name": "花钱契约单",
+					"pathName": "pages/contract/contract",
+					"query": "type=spend"
+				},
+				{
+					"id": -1,
+					"name": "雷达图",
+					"pathName": "pages/radar/radar",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "填写资料",
+					"pathName": "pages/start/start",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "type=spend"
+				},
+				{
+					"id": 20,
+					"name": "提现-withdraw",
+					"pathName": "pages/withdraw/withdraw",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "消息详情",
+					"pathName": "pages/msg-detail/msg-detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "授权 splash",
+					"pathName": "pages/splash/splash",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "契约单列表页面 deed",
+					"pathName": "pages/deed/deed",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "人气popular",
+					"pathName": "pages/popular/popular",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/about-us/about-us",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "明细详情",
+					"pathName": "pages/bill-detail/msg-detail",
+					"query": ""
+				}
+			]
+		}
+	}
+}

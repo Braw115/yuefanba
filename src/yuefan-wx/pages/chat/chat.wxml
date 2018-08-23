@@ -1,0 +1,73 @@
+<view class='container'>
+  <scroll-view class="chat-container" scroll-y="true" bindscrolltoupper="loadBefore" scroll-into-view="{{scrollTo}}">
+    <view class='tip-text' wx:if='{{orderstate==="on" || state==="on" }}'>你们已经成为好友，可以开启约饭之旅啦！ </view>
+    <view class='tip-text' wx:if='{{state==="off" || orderstate==="off"}}'>本次约饭之旅已结束</view>
+
+   <view class='contract' wx:if='{{orderstate==="on" || state==="on" }}'>
+      <view class='title'>
+        <view class='icon'>
+          <image class='icon-img' src='../../img/yfb@2x.png'></image>
+        </view>
+        <text class='title-content'>小吧提醒 :</text>
+        <view class='line'></view>
+      </view>
+
+      <view class='info-row'>
+        <view class='item-item'>
+         </view>
+        <view class='item-info-pay'>
+          <text class='item-pay'>
+         </text>
+          <text class='name'>{{info.payway==='me'? info.nickname+'请客':'AA制'}}</text>
+        </view>
+      </view>
+
+      <view class='info-row'>
+        <view class='item-item'>
+          <text class='item'>餐厅 :</text>
+        </view>
+        <view class='item-info'>
+          <text class='name'>{{info.restaurant}}</text>
+        </view>
+      </view>
+
+      <view class='info-row'>
+        <view class='item-item'>
+          <text class='item'>时间 :</text>
+        </view>
+        <view class='item-info'>
+          <text class='name'>{{info.mealtime}}</text>
+        </view>
+      </view>
+
+
+      <view class='info-row'>
+        <view class='item-item'>
+          <text class='item'>赏金 :</text>
+        </view>
+        <view class='item-info'>
+          <text class='name'>{{info.coin}}吃货币</text>
+        </view>
+      </view>
+    </view>
+
+    <block wx:key='time' wx:for='{{messages}}'>
+      <view wx:if='{{item.divider}}' id='{{item.divider}}'></view>
+      <view wx:if='{{index === 0 || item.time-messages[index-1].time>timeSpace}}' class='time-text'>{{item.timeStr}}</view>
+      <view class='msg-container {{(item.uuid == mineInfo.uuid?"right":"left")}}'>
+        <image class='avatar' src='{{item.url}}'></image>
+        <view wx:if='{{item.chat.cmd === "text"}}' class='msg-wrapper'>
+          <text>{{item.chat.text}}</text>
+        </view>
+        <image wx:if='{{item.chat.cmd === "pic"}}' style="width:{{imageSize[item.index].width}}rpx; height:{{imageSize[item.index].height}}rpx" bindtap="previewImage" class='chat-pic' bindload='imgLoad' data-index='{{item.index}}' src='{{item.chat.url}}' mode='scaleToFill'></image>
+      </view>
+    </block>
+    <view id="bottom"></view>
+  </scroll-view>
+
+  <view class='bottom-toolbar' wx:if='{{orderstate==="on" || state==="on" }}'>
+    <image class='pic' bindtap='sendImg' src='../../img/pic.png'></image>
+    <input bindinput="bindKeyInput" class='chat-input' value="{{inputValue}}" placeholder='输入内容'></input>
+    <image bindtap='sendBtn' class='send-btn' src='../../img/fasong@2x.png'></image>
+  </view>
+</view>

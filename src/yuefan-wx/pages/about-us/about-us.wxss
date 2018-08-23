@@ -1,0 +1,11 @@
+page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text_version {
+  font-size: 37rpx;
+  color: #868686;
+}

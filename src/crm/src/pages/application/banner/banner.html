@@ -1,0 +1,142 @@
+<link rel="stylesheet" href="pages/application/banner/banner.css"/>
+
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">×</a>
+    <strong>注意 : </strong> 轮播图数量上限为5张 !
+</div>
+
+<!-- 添加/编辑轮播图 -->
+<div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑轮播图</h4>
+            </div>
+            <div class="modal-body">
+                <div class="imgCont">
+                    <div class="editImg">
+                        <form class="addBanForm" id="editBanForm" action="" method="post" enctype="multipart/form-data">
+                            <a class="add" href="javascript:;">
+                                <span>+</span>
+                                <div class="gray">添加图片</div>
+                                <input type="file" onclick="this.value=''" class="addBanImg" onchange="uploadImg()"
+                                       accept="image/gif,image/jpeg,image/jpg,image/png,img/bmp"
+                                       name="file" id="editFile">
+                            </a>
+                        </form>
+                    </div>
+                    <div class="modalPosi">
+                        <div class="editImgShow">
+                            <div class="fa fa-trash-o delImg" onClick="delImg()"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="form-horizontal editBanTip">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">链接地址</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input id="url" type="text" class="form-control" value="https://www.baidu.com"
+                                   placeholder="请输入轮播链接地址" verify="strlen 1 255"/>
+                        </div>
+
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                      title="长度不超过255个字，不能为空!">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">图片描述</label>
+                        <div class="col-md-6 col-sm-6">
+                            <textarea id="description" class="form-control" placeholder="请输入图片描述" verify="strlen 1 125"
+                                      rows="3"></textarea>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                      title="长度不超过125个字，不能为空">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">位置优先级</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select id="priority" class="form-control">
+                                <option value=1>1</option>
+                                <option value=2>2</option>
+                                <option value=3>3</option>
+                                <option value=4>4</option>
+                                <option value=5>5</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择位置优先级">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">状态</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select id="state" class="form-control">
+                                <option value="false">下架</option>
+                                <option value="true">上架</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-purple submitItem">提交内容</button>
+                </div>
+                <div class="tip"></div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<div class="table-responsive table-bordered radio1 panel panel-default" style="overflow-x: hidden;">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">轮播图管理</span>
+        <button class="btn btn-purple pull-right" id="addShopBan">添加轮播图</button>
+    </div>
+    <div class="panel-body">
+        <table id="tableLi" class="table table-striped table-bordered table-hover table-style container-fluid"
+               width="100%">
+            <thead>
+            <tr>
+                <th>
+                    序号
+                </th>
+                <th>
+                    图片
+                </th>
+                <th>
+                    链接地址
+                </th>
+                <th>
+                    描述
+                </th>
+                <th>
+                    位置
+                </th>
+                <th>
+                    状态
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+            </thead>
+            <tbody class="ul-add"></tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,243 @@
+<image class='bg' mode='scaleToFill'></image>
+<view class='container'>
+  <view class='decorator'>
+    <view class='ring ring1'></view>
+    <view class='ring ring2'></view>
+    <view class='ring ring3'></view>
+    <view class='ring ring4'></view>
+  </view>
+  <view class='content' wx:if='{{type}}'>
+    <!-- <picker wx:if='{{!goBack}}' bindchange="genderChange" value="{{genderIndex}}" range="{{genderArr}}">
+      <view class='item-row'>
+        <text class='item-title'>对象</text>
+        <view class='item-main'>
+          <text>{{genderArr[genderIndex]}}</text>
+        </view>
+        <image class='arrow-right' src='../../img/arrow-right.png'></image>
+      </view>
+    </picker> -->
+
+    <view wx:if='{{goBack}}' class='item-row' bindtap='showRestaurant'>
+      <text class='item-title'>{{options.nickname}}</text>
+      <image class='{{type!="make"?"avatar2":"avatar"}}' src='{{options.avatar}}'></image>
+    </view>
+
+    <view class='item-row' wx:if='{{goBack}}'>
+      <text class='item-title'>对象</text>
+      <view class='item-main'>
+        <text class='item-goback' wx:if='{{options.gender==1}}'>男</text>
+        <text class='item-goback' wx:if='{{options.gender==0}}'>女</text>
+      </view>
+    </view>
+
+    <view class='item-row' wx:if='{{!goBack}}'>
+      <text class='item-title'>对象</text>
+      <view class='item-main {{!goBack?"left":""}}'>
+        <view class='checkedOption' bindtap='selectGender' data-gender='girl'>
+          <view class='checkedBox'>
+            <image class='checkedImg {{genderArr[0]?"active":""}}' src='../../img/xuanzhong.png'></image>
+          </view>
+          <text class='{{genderArr[0]?"active":""}}'>女</text>
+        </view>
+        <view class='checkedOption' bindtap='selectGender' data-gender='boy'>
+          <view class='checkedBox'>
+            <image class='checkedImg {{genderArr[1]?"active":""}}' src='../../img/xuanzhong.png'></image>
+          </view>
+          <text class='{{genderArr[1]?"active":""}}'>男</text>
+        </view>
+      </view>
+    </view>
+    <!-- <picker bindchange="ageChange" value="{{ageIndex}}" range="{{ageArr}}">
+      <view class='item-row'>
+        <text class='item-title'>年龄</text>
+        <view wx:if='{{!goBack}}' class='item-main'>{{ageArr[ageIndex]}}</view>
+        <view wx:if='{{goBack}}' class='item-main'>{{hotObj.birthday}}</view>
+        <image class='arrow-right' src='../../img/arrow-right.png'></image>
+      </view>
+    </picker> -->
+
+    <view class='item-row' wx:if='{{goBack}}'>
+      <text class='item-title'>年龄</text>
+      <view class='item-main '>
+        <text class="item-goback">{{ options.age }}</text>
+      </view>
+    </view>
+
+    <view class='item-row' wx:if='{{!goBack}}'>
+      <text class='item-title'>年龄</text>
+      <view class='item-main {{!goBack?"left":""}}'>
+        <view class='checkedOption' bindtap='selectAge' data-age="{{ageArr[0]}}" data-num="0">
+          <view class='checkedBox'>
+            <image class='checkedImg {{ageArr[0]?"active":""}}' src='../../img/21@2x.png'></image>
+          </view>
+          <text class='{{ageArr[0]?"active":""}}'>18~25</text>
+        </view>
+        <view class='checkedOption' bindtap='selectAge' data-age="{{ageArr[1]}}" data-num="1">
+          <view class='checkedBox'>
+            <image class='checkedImg {{ageArr[1]?"active":""}}' src='../../img/21@2x.png'></image>
+          </view>
+          <text class='{{ageArr[1]?"active":""}}'>25~30</text>
+        </view>
+        <view class='checkedOption' bindtap='selectAge' data-age="{{ ageArr[2] }}" data-num="2">
+          <view class='checkedBox'>
+            <image class='checkedImg {{ageArr[2]?"active":""}}' src='../../img/21@2x.png'></image>
+          </view>
+          <text class='{{ageArr[2]?"active":""}}'>30以上</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='item-row' bindtap='showRestaurant' wx:if='{{type!=="make"}}'>
+      <text class='item-title'>餐厅</text>
+      <view class='item-main {{!goBack?"left":""}}'>{{restaurant.name}}</view>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+
+    <view bindtap='showTimeSelect' wx:if='{{type!=="make"}}'>
+      <picker bindtap='setTime' bindchange="timeChange" mode="multiSelector" bindcolumnchange='timeRangeChange' value="{{timeIndex}}" range='{{timeArr}}'>
+        <view class='item-row'>
+          <text class='item-title'>约饭时间</text>
+          <view class='item-main {{!goBack?"left":""}}'>{{timeStr}}</view>
+          <image class='arrow-right' src='../../img/rught@2x.png'></image>
+        </view>
+      </picker>
+    </view>
+
+    <view bindtap='showTimeRangeSelect' wx:if='{{type==="make"}}'>
+      <picker bindtap='setTime' bindchange="timeChange" mode="multiSelector" bindcolumnchange='timeRangeChange2' value="{{timeIndex}}" range='{{timeArr}}'>
+        <view class='item-row'>
+          <text class='item-title'>约饭时间</text>
+          <view class='item-main {{!goBack?"left":""}}'>{{timeStr}}</view>
+          <image class='arrow-right' src='../../img/rught@2x.png'></image>
+        </view>
+      </picker>
+    </view>
+
+    <picker bindtap='setRewardIndex' bindchange="wantRewardChange" bindcolumnchange='rewardRangeChange' mode="multiSelector" value="{{wantReward}}" range="{{[rewardArr,rewardArr]}}">
+      <view class='item-row' wx:if='{{type==="make"}}'>
+        <text class='item-title'>理想赏金</text>
+        <view class='item-main {{!goBack?"left":""}}'>{{rewardArr[realWantReward[0]]}}~{{rewardArr[realWantReward[1]]}} 吃货币</view>
+        <image class='arrow-right' src='../../img/rught@2x.png'></image>
+      </view>
+    </picker>
+
+    <view class='item-row' wx:if='{{type!=="make" || goBack}}'>
+      <text class='item-title'>结算方式</text>
+      <view class='item-main {{!goBack?"left":""}}'>
+
+        <view wx:if='{{!goBack}}' class='checkedOption' bindtap="selectPayway" data-payway="me">
+          <view class='radioBox'>
+            <view class='radioChecked {{payway==="me"?"active":""}}'></view>
+          </view>
+          <text class='{{payway==="me"?"active":""}}'>我请客</text>
+        </view>
+
+        <view wx:if='{{goBack}}' class='checkedOption' bindtap="selectPayway" data-payway="me">
+          <!-- <view class='radioBox'>  -->
+          <view class='radioChecked {{payway==="me"?"active":""}}'></view>
+          <!-- </view>  -->
+          <text class='{{payway==="me"?"qingke":""}}'>我请客</text>
+        </view>
+
+        <view class='checkedOption' wx:if='{{type!=="spend"}}' bindtap="selectPayway" data-payway="aa">
+          <view class='radioBox'>
+            <view class='radioChecked {{payway==="aa"?"active":""}}'></view>
+          </view>
+          <text class='{{payway==="aa"?"active":""}}'>AA制</text>
+        </view>
+      </view>
+    </view>
+
+    <picker  bindchange="rewardChange" value="{{rewardIndex}}" range="{{rewardArr}}">
+      <view class='item-row' wx:if='{{type==="spend"}}'>
+        <text class='item-title'>赏金</text>
+        <view class='item-main {{!goBack?"left":""}}'>{{rewardArr[rewardIndex]}} 吃货币</view>
+        <image class='arrow-right' src='../../img/rught@2x.png'></image>
+      </view>
+    </picker>
+
+    <view class='item-row' wx:if='{{type!=="spend"}}'>
+      <text class='item-title'>诚意金</text>
+      <view class='item-main {{!goBack?"left":""}}' style='padding-right:40rpx'>{{deposit }} 吃货币</view>
+    </view>
+
+  </view>
+  <view class='exchange-rate'>兑换比例 :
+    <text> 1 </text>元=
+    <text>{{ proportion }} </text>个吃货币
+  </view>
+  <view class='tip' wx:if='{{type==="spend"}}'>如果对方放鸽子，赏金将退回您的账户。</view>
+  <view class='tip' wx:else>如果订单成交或对方放鸽子，诚意金将退回您的账户。</view>
+</view>
+<form bindsubmit='doCreate' report-submit>
+  <button formType="submit" data-type="click" hover-class='navigator-hover' class='btn-round'>
+    <text wx:if='{{type==="make"}}'>发布</text>
+    <text wx:else>提交</text>
+  </button>
+</form>
+
+<view class='modal-backdrop' hidden='{{!showRestaurant}}'>
+  <view class='modal-container restaurant'>
+    <image class='close-btn1' bindtap='showRestaurant' src='../../img/quxiao-@2x.png'></image>
+    <view class='search-container'>
+      <input class='search-input' bindinput='inputChange' placeholder-style='color:#999' placeholder='输入关键字（如地名，或商业中心名）'></input>
+    </view>
+    <scroll-view style='height:900rpx' bindscrolltolower='searchRest' scroll-y>
+      <view class='result-item' wx:for='{{restaurantArr}}' wx:key='{{item.id}}' hover-class='navigator-hover' data-restaurant='{{item}}' bindtap='setRestaurant'>
+        {{item.name}}
+        <view style='font-size:28rpx;color:#999'>{{item.address}}</view>
+      </view>
+      <view class='load-more-footer'>{{isLoading?"正在加载...":(hasMore?"":"已到达底部")}}</view>
+    </scroll-view>
+  </view>
+</view>
+
+<!--通知提示-->
+<view class='modal-backdrop' hidden='{{!showRecharge}}'>
+  <view class='modal-container'>
+    <image class='close-btn' bindtap='showRecharge' src='../../img/quxiao-@2x.png'></image>
+    <!-- <view class='modal-title'>{{errorTitle}}</view>  -->
+    <!-- <image src='{{errorImg}}'></image> -->
+    <image class='hide-img' src='{{errorImg}}'></image>
+    <view class='recharge-text'>
+      {{errorText}}
+    </view>
+    <navigator class='btn-round recharge-btn' bindtap='showRecharge' url='{{errorToPage}}' hover-class='none' open-type='redirect' wx:if='{{errorBtnText!=="" }}' >
+      {{errorBtnText}}
+    </navigator>
+    <view class='btn-round2 recharge-btn2' bindtap='showRecharge' catchtap='goTodeed' hover-class='none' open-type='redirect' wx:if='{{BtnText1!=="" && BtnText2!=="" && errorBtnText==""}}' >
+      {{BtnText1}}
+    </view>
+      <navigator class='btn-round2 recharge-btn2' bindtap='showRecharge' url='{{errorToPage}}' hover-class='none' open-type='redirect' wx:if='{{BtnText1!=="" && BtnText2!=="" && errorBtnText==""}}'  >
+      {{BtnText2}}
+    </navigator>
+</view>
+</view>
+
+<view class='modal-backdrop' hidden='{{!showGreet}}'>
+  <view class='modal-container greet'>
+    <image class='close-btn3' bindtap='navBack' src='../../img/quxiao-@2x.png'></image>
+    <view class='greet-grid'>
+      <view class='greet-item' bindtap='selectGreet' data-index='{{index}}' wx:for='{{greetArr}}' wx:key='uuid'>
+        <image src='{{item.avatar}}' class='dazhaohu-avatar'></image>
+        <image src='../../img/xuanze@2x.png' class='check' wx:if='{{item.selected}}'></image>
+        <text class='username'>{{item.nickname}}</text>
+      </view>
+    </view>
+    <view class='btn-round greet-btn' bindtap='invite'>打招呼</view>
+  </view>
+</view>
+
+<view class='modal-backdrop' hidden='{{!pay}}'>
+  <view class='modal-container pay'>
+    <image class='close-btn2' bindtap='pay' src='../../img/quxiao-@2x.png'></image>
+    <view class='modal-title'>支付诚意金</view>
+    <view class='modal-item'>
+      <text class="amount">{{deposit }}</text>吃货币</view>
+    <!-- <view class='recharge-text'>我同意</view> -->
+    <view class='agree-text'>点击支付代表您已查看并同意
+      <text class='payment'>《支付协议》</text>
+    </view>
+    <navigator class='btn-round recharge-btn' url='{{errorToPage}}' hover-class='none' open-type='redirect'>去支付</navigator>
+  </view>
+</view>

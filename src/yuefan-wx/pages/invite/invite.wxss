@@ -1,0 +1,89 @@
+
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: -1;
+  display: none;
+  
+}
+.all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 12%;
+
+}
+
+.logo_icon {
+  display: block;
+  margin: 0 auto;
+  margin-top: 120rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+}
+
+.bg.show {
+  display: block;
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  height: 300rpx;
+  
+
+}
+.logo image{
+  width: 210rpx;
+  height: 210rpx;
+}
+.main_btn {
+  height: 180rpx;
+  width: 450rpx;
+  display: flex;
+  justify-content: center;
+  
+  
+}
+
+.main_btn image {
+  width: 395rpx;
+  height: 100rpx;
+}
+
+.sub-btn {
+  height: 180rpx;
+  width: 330rpx;
+  display: flex;
+  justify-content: center;
+  
+  
+}
+
+.sub-btn image {
+  height: 90rpx;
+  width: 280rpx;
+}
+.sub-btn2 {
+  width: 330rpx;
+  display: flex;
+  justify-content: center;
+  position: a
+ 
+}
+
+.sub-btn2 image {
+  height: 90rpx;
+  width: 280rpx;
+}
+
+button {
+  background: none;
+}
+
+button::after {
+  border: none;
+}

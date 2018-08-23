@@ -1,0 +1,93 @@
+<view class='container'>
+  <scroll-view class='inner' scroll-y bindscrolltolower='loadMore'>
+    <view style='position:relative'>
+      <swiper autoplay='true' circular='true' interval='6000' duration='700' current='current' bindchange='swiperChange' bindtap='editProfile'>
+        <block wx:key='*this' wx:for='{{userInfo.personality}}'>
+          <swiper-item>
+            <image class='mask' src='../../img/mask.png'>
+            </image>
+            <image src='{{item}}' mode='aspectFill' class='slide-image' />
+          </swiper-item>
+        </block>
+      </swiper>
+      <image wx:if='{{!userInfo.personality||userInfo.personality.length===0}}' class='mask' src='../../img/mind-default-bg.png'></image>
+      <block wx:if="{{userInfo}}">
+        <image wx:if="{{isMine}}" class='like' bindtap='editProfile' src='../../img/edit.png'></image>
+        <!-- <image wx:else class='like' bindtap='toggleFav' src='../../img/{{userInfo.isfavorite?"heart2-active":"heart2"}}.png'></image> -->
+      </block>
+      <view class='mengban'>
+      <image class='mengban-img' src='../../img/mengban@2x.png'></image>
+      <view class='subtitle'>
+        <text>{{userInfo.nickname}}</text>
+         <!-- <image src='../../img/{{userInfo.gender?"boy":"girl"}}-tp.png'></image>  -->
+         <image src='../../img/{{userInfo.gender?"boy-tp":"gil@2x"}}.png'></image>
+         <text>{{userInfo.age}}</text>
+        <text class='indicator'wx:if='{{userInfo.personality || userInfo.personalit.length>0}}' >{{(current+1)+'/'+userInfo.personality.length}}</text>
+      </view>
+    </view>
+</view>
+
+    <view class='tabs'>
+      <view data-index="0" class='{{"tab-item "+ (tabIndex==="0"?"tab-active":"")}}' bindtap='changeTab'>
+        <text class='tab-text'>资料</text>
+         </view>
+      <view data-index="1" class='{{"tab-item "+ (tabIndex==="1"?"tab-active":"")}}' bindtap='changeTab'>
+        <text class='tab-text'>视频</text>
+      </view>
+    </view>
+
+    <view class='profile-list' hidden='{{tabIndex==="1"}}'>
+      <view class='profile-item'>
+        <text class='title'>相册</text>
+        <view class='content album' bindtap='previewAlbum'>
+          <block wx:key='*this' wx:for="{{userInfo.album}}">
+            <image catchtap='previewAlbum' data-index='{{index}}' class='thumbnail' wx:if='{{index<5}}' mode='scaleToFill' src='{{item}}'></image>
+          </block>
+          <image wx:if='{{isMine && userInfo.album.length===0}}' class='thumbnail add' src='../../img/add.png'></image>
+          <image class='arrow' src='../../img/arrow-right.png'></image>
+        </view>
+      </view>
+      <view class='profile-item'>
+        <text class='title'>身高</text>
+        <text class='content'>{{userInfo.height}}cm</text>
+      </view>
+      <view class='profile-item'>
+        <text class='title'>位置</text>
+        <text class='content'>{{userInfo.city}}</text>
+      </view>
+      <view class='profile-item rank'>
+        <text class='title'>评价</text>
+        <view class='content'>
+          <image class='star active' src='../../img/pingjia@2x.png' wx:key="i" wx:for='{{activestar}}'></image>
+          <image class='star' src='../../img/star.png' wx:key="i" wx:for='{{graystar}}'></image>
+        </view>
+      </view>
+      <view class='comment-list'>
+        <view class='comment-item' wx:key="uuid" wx:for='{{commentArr}}'>
+          <image class='avatar' src='{{item.evaluatoravatar}}'></image>
+          <view class='comment content'>
+            <text class='time'>{{item.created}}</text>
+            <text>{{item.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+         
+<view class='tab2-container' hidden='{{tabIndex==="0"}}'>
+      <view catchtap='play'>
+        <video class='present-video' wx:if='{{userInfo.attestvideo}}' id="myVideo" src="{{userInfo.attestvideo}}" controls='true' objectFit='cover'></video>
+        <view wx:else class='video'>
+          <image class='uploadvideo' src='../../img/video.png'></image>
+          暂未上传
+        </view>
+      </view>
+    </view>
+    <view class='load-more-footer' wx:if='{{tabIndex==="0"}}'>{{isLoading?"":(hasMore?"":"已到达底部")}}</view>
+    <view class="weui-loadmore" hidden="{{isHideLoadMore}}" wx:if='{{isLoading}}'>
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+  </scroll-view>
+  <view wx:if='{{userInfo && !isMine && !type}}' bindtap='invite' class='invite-btn' hover-class='navigator-hover'>约TA吃饭</view>
+  <view wx:if='{{userInfo && !isMine && type}}' bindtap='viewdeed' class='invite-btn' hover-class='navigator-hover'>查看TA的契约单</view>
+</view>

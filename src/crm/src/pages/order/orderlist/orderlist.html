@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="pages/order/orderlist/orderlist.css"/>
+
+<div class="table-responsive table-bordered radio1 panel panel-default" style="overflow-x: hidden;">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">订单列表</span>
+    </div>
+
+    <div class="box-body">
+        <table id="tableLi" class="table table-striped table-bordered table-hover table-style container-fluid"
+               width="100%">
+            <thead>
+            <tr>
+                <th>
+                    ID契约单1
+                </th>
+                <th>
+                    ID契约单2
+                </th>
+                <th>
+                    <select id="state" class="form-control" onchange="changeData()">
+                        <option value="all">全部状态</option>
+                        <option value="on">未完成</option>
+                        <option value="off">完成</option>
+                    </select>
+                </th>
+                <th>
+                    <select id="type" class="form-control" onchange="changeData()">
+                        <option value="all">全部类型</option>
+                        <option value="normal">正常单</option>
+                        <option value="either">单方评论</option>
+                        <option value="neither">双方未评</option>
+                        <option value="unusual">争议评</option>
+                        <option value="waitfeedback">待反馈</option>
+                    </select>
+                </th>
+                <th>
+                    货币总额
+                </th>
+                <th>
+                    支付人
+                </th>
+                <th>
+                    订单吃饭时间
+                </th>
+                <th>
+                    地点
+                </th>
+                <th>
+                    创建时间
+                </th>
+                <!--<th>-->
+                    <!--操作-->
+                <!--</th>-->
+            </tr>
+            </thead>
+            <tbody class="ul-add"></tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="orderDetailModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                契约单详情
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span class="nowUser">用户uuid</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="useruuid"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>地址</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="address"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>餐厅</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="restaurant"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>诚意金/赏金</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="deposit"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>契约单类型</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="deedtype"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>匹配状态</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="deedstate"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>是否一对一</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="onetoone"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>是否超时</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="istimeout"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>约饭结果</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="result"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>约饭时间段</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="mealtime"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>创建时间</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong id="created"></strong>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                </div>
+                <div class="tip"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_addComment" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                添加评论
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form1" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="level" class="col-md-3 col-sm-3 control-label">评分</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input  type="number" class="rating"  id="level" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="content" class="col-md-3 col-sm-3 control-label">评论内容</label>
+                        <div class="col-md-6 col-sm-6">
+                            <textarea id="content" class="form-control" rows="5"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="doAddComment()">确定</button>
+                </div>
+                <div class="tip"></div>
+            </div>
+        </div>
+    </div>
+</div>

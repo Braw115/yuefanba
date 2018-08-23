@@ -1,0 +1,4 @@
+<view class='container'>
+  <input class='input' bindinput="bindKeyInput" placeholder='新手机号' type='number' placeholder-class='hoder'></input>
+  <view class='{{"btn "+(active?"active":"")}}' hover-class='{{active?"btn-press":""}}' bindtap='nextPhase'>获取验证码</view>
+</view>

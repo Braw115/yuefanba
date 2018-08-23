@@ -1,0 +1,183 @@
+<!--index.wxml-->
+<page>
+  <view class='banner-bg'>
+    <swiper indicator-dots='true' autoplay='true' circular='true' interval='3000' duration='700' indicator-active-color='#fff' indicator-color='rgba(255,255,255,0.58)'>
+      <block wx:key='uuid' wx:for='{{banners}}'>
+        <swiper-item >
+          <image src='{{item.img}}' mode=' ' class='slide-image' bindtap='gotoLink' data-index='{{index}}'/>
+          <!-- <image src="../../img/mind-default-bg.png" wx:if='{{!banners}}' class='slide-image' /> -->
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <form bindsubmit='doMine' report-submit>
+    <button formType="submit" data-type="click" hover-class='navigator-hover' class='profile icon-60 wrap-btn'>
+      <image class='btn-img' mode='aspectFit' src='../../img/user.png'></image>
+    </button>
+  </form>     个人中心按钮 -->
+    <!-- <form bindsubmit='doMsg' report-submit>
+    <button formType="submit" data-type="click" hover-class='navigator-hover' class='notice icon-60 wrap-btn'>
+      <image class='btn-img' mode='aspectFit' src='../../img/ring.png'></image>
+     </button>  
+  </form>  消息按钮  红点按钮   -->
+  </view>
+
+  <view class='recommend'>
+    <view class='title-wrap'>
+      <image class='icon-75' mode='aspectFit' src='../../img/reyue@2x.png'></image>
+      <text class='title-main'>人气热约</text>
+      <!-- <navigator style='display:inline-block' url='../popular/popular' hover-class='none'> -->
+      <text class='title-extra title-more' catchtap='goToPopular'>更多</text>
+      <!-- </navigator> -->
+    </view>
+    <view class="hot-container">
+      <view style="white-space: nowrap;" wx:if="{{clubs.length>=3}}" class="box" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend">
+        <view data-index='0' catchtap='toProfile' class='club {{clubs.length>=4?"":"hide"}}' animation="{{animation1}}" bindtap="scrollLeft">
+          <image src="{{clubs[0].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs[0].nickname}}</text>
+        </view>
+        <view data-index='{{clubs.length===3?0:1}}' catchtap='toProfile' class="club" animation="{{animation2}}" bindtap="scrollLeft">
+          <image src="{{clubs.length===3?clubs[0].avatar:clubs[1].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs.length===3?clubs[0].nickname:clubs[1].nickname}}</text>
+        </view>
+        <view data-index='{{clubs.length===3?1:2}}' catchtap='toProfile' class="club" animation="{{animation3}}">
+          <image src="{{clubs.length===3?clubs[1].avatar:clubs[2].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs.length===3?clubs[1].nickname:clubs[2].nickname}}</text>
+        </view>
+        <view data-index='{{clubs.length===3?2:3}}' catchtap='toProfile' class="club" animation="{{animation4}}" bindtap="scrollRight">
+          <image src="{{clubs.length===3?clubs[2].avatar:clubs[3].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs.length===3?clubs[2].nickname:clubs[3].nickname}}</text>
+        </view>
+        <view data-index='4' catchtap='toProfile' class='club {{clubs.length>=5?"":"hide"}}' animation="{{animation5}}" bindtap="scrollRight">
+          <image src="{{clubs[4].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs[4].nickname}}</text>
+        </view>
+      </view>
+
+      <view style="white-space: nowrap;" wx:if="{{clubs.length>0 && clubs.length<=2}}" class="box">
+        <view data-index='0' catchtap='toProfile' class='club2'>
+          <image src="{{clubs[0].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs[0].nickname}}</text>
+        </view>
+        <view data-index='1' catchtap='toProfile' class='club2' wx:if="{{clubs.length===2}}">
+          <image src="{{clubs[1].avatar}}" />
+          <view class='name-box'></view>
+          <text>{{clubs[1].nickname}}</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='nearby-bg'>
+    <view class='nearby'>
+      <view class='title-wrap'>
+        <image class='icon-75' mode='aspectFit' src='../../img/fujinsy@2x.png'></image>
+        <text class='title-main'>附近约饭</text>
+        <view class='wrap-contain'>
+          <text bindtap='setFilter' data-orderby='distance' class='title-tip {{orderby==="distance"?"filter-active":""}}'>距离</text>
+          <text bindtap='setFilter' data-orderby='mealtime' class='title-tip {{orderby==="mealtime"?"filter-active":""}}'>最新</text>
+          <text class='title-extra {{showFilter?"active":""}}' bindtap='showFilter'>筛选</text>
+
+          <!-- <text class='title-extra' bindtap='showFilter' wx:else>筛选</text> -->
+          <view class='radar-img'>
+            <image mode='aspectFit' bindtap='navToRadar' src='../../img/fujin@2x(1).png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='radar'>
+        <view class='filter-box' wx:if='{{showFilter}}'>
+          <view class='filter-row'>
+            <text>对象</text>
+            <!-- 性别 -->
+            <view class='item-main'>
+              <view class='checkedOption' bindtap='selectGender' data-gender='girl'>
+                <view class='checkedBox'>
+                  <image class='checkedImg {{genderArr[0]?"active":""}}' src='../../img/xuanzhong.png'></image>
+                </view>
+                <text class='{{genderArr[0]?"active":""}}'>女</text>
+              </view>
+              <view class='checkedOption' bindtap='selectGender' data-gender='boy'>
+                <view class='checkedBox'>
+                  <image class='checkedImg {{genderArr[1]?"active":""}}' src='../../img/xuanzhong.png'></image>
+                </view>
+                <text class='{{genderArr[1]?"active":""}}'>男</text>
+              </view>
+            </view>
+            <!-- 性别 -->
+
+            <text class='close-btn' bindtap='showFilterflash'>×</text>
+          </view>
+          <view class='divider'></view>
+          <view class='filter-row'>
+            <text>年龄</text>
+            <view class='item-main'>
+              <view class='checkedOption' bindtap='selectAge' data-age="{{ageArr[0]}}" data-num="0">
+                <view class='checkedBox'>
+                  <image class='checkedImg {{ageArr[0]?"active":""}}' src='../../img/xuanzhong.png'></image>
+                </view>
+                <text class='{{ageArr[0]?"active":""}}'>18~25</text>
+              </view>
+              <view class='checkedOption' bindtap='selectAge' data-age="{{ageArr[1]}}" data-num="1">
+                <view class='checkedBox'>
+                  <image class='checkedImg {{ageArr[1]?"active":""}}' src='../../img/xuanzhong.png'></image>
+                </view>
+                <text class='{{ageArr[1]?"active":""}}'>25~30</text>
+              </view>
+              <view class='checkedOption' bindtap='selectAge' data-age="{{ ageArr[2] }}" data-num="2">
+                <view class='checkedBox'>
+                  <image class='checkedImg {{ageArr[2]?"active":""}}' src='../../img/xuanzhong.png'></image>
+                </view>
+                <text class='{{ageArr[2]?"active":""}}'>30以上</text>
+              </view>
+            </view>
+            <!-- 年龄 -->
+          </view>
+
+          <!-- <view class='filter-row'>
+        <view bindtap='setFilter' data-age='0' class='filter-item {{fAge==="0"?"filter-active":""}}'>不限</view>
+        <view bindtap='setFilter' data-age='1' class='filter-item {{fAge==="1"?"filter-active":""}}'>25以下</view>
+        <view bindtap='setFilter' data-age='2' class='filter-item {{fAge==="2"?"filter-active":""}}'>25-35</view>
+        <view bindtap='setFilter' data-age='3' class='filter-item {{fAge==="3"?"filter-active":""}}'>35以上</view>
+      </view> -->
+
+        </view>
+      </view>
+      <view class='nearby-list'>
+        <view class='nearby-item' wx:for='{{nearbyArr}}' wx:key='uuid' bindtap='nearbyTap' data-item='{{item}}'>
+          <image class='avatar-square' src='{{item.avatar}}'></image>
+          <view class='nearby-info'>
+            <view class='first-row'>
+              <text class='nearby-name'>{{item.nickname}}</text>
+              <image class='icon-24' src='../../img/{{item.gender?"sy-nan@2x":"sy-nv@2x"}}.png'></image>
+              <text class='title-tip'>{{item.age}}岁</text>
+              <view class='geo'>
+                <image class='icon-pin' mode='aspectFit' src='../../img/dw@2x.png'></image>
+                <text class='title-tip'>{{item.distance}}</text>
+              </view>
+            </view>
+            <!-- <text class='info-text' style='color:#fe417c;'>{{item.payway==='me'?'我请客':'AA'}}</text> -->
+            <text class='info-text' style='color:#4E4849;'>{{item.time}}</text>
+            <text class='info-text' style='color:#4E4849;'>{{item.restaurant}}</text>
+            <text class='payway' style='color:#fe417c;'>{{item.payway==='me'?'我请客':'AA'}}</text>
+
+          </view>
+          <view class='invite-btn' catchtap='inviteNearby' data-uuid='{{item.uuid}}' hover-class='navigator-hover'>应邀</view>
+        </view>
+      </view>
+
+      <view class='load-more-footer'>{{isLoading?"":(hasMore?"":"已到达底部")}}</view>
+      <view class="weui-loadmore" hidden="{{isHideLoadMore}}" wx:if='{{isLoading}}'>
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+    </view>
+  </view>
+
+</page>
+<!-- <view class='has-msg' wx:if='{{hasUnread}}'></view>  -->

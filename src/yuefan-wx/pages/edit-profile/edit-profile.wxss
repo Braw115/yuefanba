@@ -1,0 +1,134 @@
+page {
+  background: #dfdfdf;
+  padding-bottom: 34rpx;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.avatar-container .text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #838383;
+  text-align: right;
+}
+
+.avatar {
+  width: 118rpx;
+  height: 118rpx;
+  border-radius: 50%;
+  margin: 20rpx 0 20rpx 46rpx;
+}
+
+.arrow-right {
+  width: 18rpx;
+  height: 30rpx;
+  margin: 0 22rpx;
+}
+
+.container {
+  background: #fff;
+  margin-top: 14rpx;
+}
+
+.title {
+  padding: 28rpx 0 0 36rpx;
+  font-size: 30rpx;
+  color: #838383;
+}
+.title text{
+  color: #838383;
+}
+
+.tip {
+  font-size: 30rpx;
+  color: #838383;
+  margin-left: 20rpx;
+}
+
+.image-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0 48rpx 42rpx;
+}
+
+.image-item {
+  position: relative;
+  margin: 44rpx 28rpx 12rpx 0;
+}
+
+.delete {
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  left: 83rpx;
+  top: -34rpx;
+  padding: 8rpx;
+  box-sizing: content-box;
+}
+
+.thumbnail {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 4rpx;
+}
+
+.thumbnail.add {
+  background: #eee;
+  padding: 27rpx;
+}
+
+.video-content {
+  display: flex;
+  align-items: center;
+  margin: 10rpx 0 0 140rpx;
+  height: 180rpx;
+}
+
+.video {
+  width: 180rpx;
+  height: 180rpx; 
+  background: #eee;
+  margin-right: 46rpx;
+  font-size: 25rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.uploadvideo {
+  display: block;
+  margin: 0 auto;
+  margin-top:40rpx; 
+  margin-bottom: 20rpx;
+  width: 60%;
+  height: 35%;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #838383;
+  height: 90rpx;
+  padding-left: 27rpx;
+}
+.profile-item text{
+  color: #838383;
+}
+
+.profile-item .content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.edit {
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 30rpx 0 12rpx;
+}

@@ -1,0 +1,60 @@
+<view class='filter-title' bindtap='showFilter'>
+  <text wx:if='{{listType==="all"}}'>全部 </text>
+  <text wx:if='{{listType==="to"}}'>TA约我 </text>
+  <text wx:if='{{listType==="from"}}'>我约TA </text>
+  <image class='filter-img {{showFilter?"":"active"}}' src='../../img/xiangxia@2x.png'></image>
+</view>
+<view class='filter-items' wx:if='{{showFilter}}'>
+  <view class='item-box'>
+    <view class='filter-item {{listType==="all"?"active":""}}' bindtap='setFilter' data-type='all'>全部</view>
+    <view class='filter-item {{listType==="to"?"active":""}}' bindtap='setFilter' data-type='to'>TA约我</view>
+    <view class='filter-item {{listType==="from"?"active":""}}' bindtap='setFilter' data-type='from'>我约TA</view>
+  </view>
+</view>
+
+<view class='bg'  wx:if="{{orderArr.length===0}}">
+<image class='order-img' wx:if="{{orderArr.length===0}}" src='../../img/dingdan@2x.png'></image>
+<view class='order' wx:if="{{orderArr.length===0}}">你还没有饭单哦~</view>
+</view>
+<scroll-view scroll-y style='height:100%'>
+  <view class='list'>
+    <view class='list-item {{item.state==="on"?"":"expired"}}' catchtap='goToOrderDetail' data-index='{{index}}' wx:key='uuid' wx:for='{{orderArr}}'>
+      <view class='avatar-block'>
+        <view class='avatar'>
+          <image src='{{item.avatar2}}'></image>
+        </view>
+        <image class='arrow' src='../../img/flat-arrow.png'></image>
+        <view class='avatar'>
+          <image src='{{item.avatar1}}'></image>
+        </view>
+      </view>
+      <view class='bonus'>
+        <text class='bonus-text'>赏金</text>
+        <text class='bonus-num'>{{item.coin}}</text>
+      </view>
+      <view class='where'>
+        <image class='icon' src='../../img/fork.png'></image>
+        <text class='name'>{{item.location}}</text>
+      </view>
+      <view class='when'>
+        <image class='icon' src='../../img/clock.png'></image>
+        <text class='name'>{{item.time}}</text>
+      </view>
+      <view class='bottom-bar'>
+        <view wx:if='{{item.commenttype==="waitfeedback"}}' class='round-btn btn-white' catchtap='deelOrder' data-index='{{index}}' data-result='notgo' hover-class='navigator-hover'>TA爽约</view>
+        <view wx:if='{{item.commenttype==="waitfeedback"}}' class='round-btn btn-red' catchtap='deelOrder' data-index='{{index}}' data-result='go' hover-class='navigator-hover'>TA应约</view>
+        <view  class='result-btn'>
+          <text style='font-size:12px;color:#999;' wx:if='{{item.commenttype!="waitfeedback" && item.state==="on"}}'>(等待对方完成) </text>  
+          <text wx:if='{{item.commenttype==="go"}}'>TA应约</text>
+          <text wx:if='{{item.commenttype==="notgo"}}'>TA爽约</text>       
+        </view>
+      </view>
+    </view>
+  </view>
+
+<view class='load-more-footer' wx:if="{{orderArr.length!=0}}">{{isLoading?"":(hasMore?"":"已到达底部")}}</view>
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}" wx:if='{{isLoading}}'>
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</scroll-view>

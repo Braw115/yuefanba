@@ -1,0 +1,26 @@
+<image class='bg' mode="aspectFill"  src='../../img/xinbj-@2x(1).png'></image>
+<view class='footer'>
+<view class='section'>
+  <picker bindchange="bindHeightChange" value="{{hIndex}}" range="{{heightArr}}">
+      <view class="picker">
+        <text class='picker-text'>身高 </text>
+        <text class='birth'>{{heightArr[hIndex] || ''}} cm</text>
+        <image class="xiala"  src='../../img/xiala@2x.png'></image>
+      </view>
+    </picker>
+ 
+ <picker mode="date" fields="month" value="{{date}}" start="1970-01" end="{{today}}" bindchange="bindDateChange">
+    <view class="picker">
+      <text picker-text>出生</text>
+      <text class='birth'> {{selectData}}</text>
+      <image class='xiala' src='../../img/xiala@2x.png'></image>
+  </view>
+  </picker>
+  </view>
+<view class='{{"start-btn "+(active?"active":"")}} {{active?"btn-shadow":""}}' bindtap='submit' hover-class='{{active?"btn-press":""}}'>马上开启
+</view>
+<view class='notice'>
+点击开启即表示已经阅读并同意
+  <navigator style='display:inline-block' url='../protocol/protocol?type=serve' hover-class='none'><text> 服务协议 </text></navigator>
+</view>
+</view>

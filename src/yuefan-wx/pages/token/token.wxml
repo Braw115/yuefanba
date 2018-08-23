@@ -1,0 +1,17 @@
+<view class='top-view'>
+  <!-- <image class='bg' mode='widthFix' src='../../img/chihuobi@2x.png'> -->
+ <view class='top'> <image class='top-img' src='../../img/chihuobi@2x.png'></image></view>
+  
+  <navigator class='bill' url='../bill/bill' hover-class='null'>明细</navigator>
+  <text class='remain-text'>剩余吃货币</text>
+  <text class='remain-token'>{{res.balance}}</text>
+</view>
+<view class='main-view'>
+  <image class='bg' mode='scaleToFill' src=''>
+  </image>
+  <!-- <navigator class='rnd-btn' url='../recharge/recharge' hover-class='navigator-hover'> </navigator> -->
+  <navigator class='recharge-btn' url='../recharge/recharge'>充值
+  <!-- <image class='recharge-img' src='../../img/cz@2x.png'></image> -->
+  </navigator>
+  <navigator class='rnd-btn' url='../withdraw/withdraw' hover-class='navigator-hover'>提现</navigator>
+</view>

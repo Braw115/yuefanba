@@ -1,0 +1,7 @@
+<view class='container'>
+  <text class='tip'>验证码已发送至{{phone}}</text>
+  <input class='input' bindinput="bindKeyInput" placeholder='验证码' type='number' placeholder-class='hoder'></input>
+  <view wx:if='{{countDown>0}}' class='count-down'>{{countDown}}秒后重发</view>
+  <view wx:else class='count-down resend' bindtap='resend'>重发</view>
+  <view class='{{"btn "+(active?"active":"")}}' bindtap='submit' hover-class='{{active?"btn-press":""}}'>完成</view>
+</view>

@@ -1,0 +1,40 @@
+.panel-heading select{
+    margin:0 15px;
+    max-width: 150px;
+}
+
+.addBtnBox,.nowUser{
+    display: none;
+}
+
+.timerRange{
+    display: flex;
+    justify-content: space-around;
+}
+
+.makeBox,.spendBox,.nearbyBox,#addBtnBox{
+    display: none;
+}
+
+.restaurant-box{
+    position: relative;
+}
+
+.restaurant-box .restaurant-list{
+    width: 93%;
+    padding:6px 10px 0 10px;
+    position: absolute;
+    background-color: #fff;
+    border:1px solid #e8e8e8;
+    top:35px;
+    z-index: 999;
+    display: none;
+}
+
+.restaurant-box .restaurant-list .restaurant_item{
+    cursor: pointer;
+}
+
+.restaurant-box .restaurant-list .restaurant_item:hover{
+    border-bottom: 1px solid #999;
+}

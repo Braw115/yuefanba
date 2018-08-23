@@ -1,0 +1,20 @@
+<view class='container'>
+  <view class='title'>充值金额</view>
+  <view class='num-view'>
+    <view wx:for='{{option}}' wx:key='*this' class='view-contain {{selectedIndex === index?"active":""}}' data-index='{{index}}' bindtap='changeIndex'>
+      <text>{{item}} 元</text>
+      <text class='exchange'>({{item*proportion}}吃货币)</text>
+    </view>
+  </view>
+  <view class='bottom-view'>
+    <view class='bottom-text'>
+      <text>点击充值，即表示已阅读并同意</text>
+      <navigator class='contract' style='display:inline-block;' url='../protocol/protocol?type=pay' hover-class='none'>
+        <text style='color:#8878ff;'>充值协议</text>
+      </navigator>
+    </view>
+    <form bindsubmit='formSubmit' report-submit>
+      <button formType="submit" data-type="click" class='bottom-btn btn-shadow' bindtap='recharge' hover-class='navigator-hover'>去充值</button>
+    </form>
+  </view>
+</view>

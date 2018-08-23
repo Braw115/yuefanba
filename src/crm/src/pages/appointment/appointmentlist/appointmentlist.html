@@ -1,0 +1,241 @@
+<link rel="stylesheet" href="pages/appointment/appointmentlist/appointmentlist.css"/>
+<div class="table-responsive table-bordered radio1 panel panel-default" style="overflow-x: hidden;">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">契约单列表</span><span id="nowUser">当前用户 : </span><strong
+            class="userMsg"></strong>
+        <span id="addBtnBox">
+			<button class="btn btn-purple pull-right" id="addDeed">创建契约单</button>
+            <select class="form-control pull-right" id="type">
+                <option value="nearby">附近约饭</option>
+                <option value="make">我要赚钱</option>
+                <option value="spend">我要花钱</option>
+            </select>
+            <span class="pull-right" style="line-height: 34px;">选择要创建的契约单类型 : </span>
+		</span>
+    </div>
+    <div class="box-body">
+        <table id="tableLi" class="table table-striped table-bordered table-hover table-style container-fluid"
+               width="100%">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户uuid</th>
+                <th>餐厅地址</th>
+                <th>约饭餐厅</th>
+                <th>支付方式</th>
+                <th>诚意/打赏金(元)</th>
+                <th>
+                    <select class="form-control typeSelect" onchange="changeData ()">
+                        <option value="all">--契约单类型--</option>
+                        <option value="spend">我要花钱</option>
+                        <option value="make">我要赚钱</option>
+                        <option value="nearby">附近约饭</option>
+                    </select>
+                </th>
+                <th>
+                    <select class="form-control stateSelect" onchange="changeData ()">
+                        <option value="all">--匹配状态--</option>
+                        <option value="false">未匹配</option>
+                        <option value="true">已匹配</option>
+                    </select>
+                </th>
+                <th>是否1对1</th>
+                <th>是否过期</th>
+                <th>
+                    <select class="form-control resultSelect" onchange="changeData ()">
+                        <option value="all">--约饭结果--</option>
+                        <option value="go">已应约</option>
+                        <option value="notgo">放鸽子</option>
+                    </select>
+                </th>
+                <th>约饭时间点</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="ul-add"></tbody>
+        </table>
+    </div>
+</div>
+
+<!--评价列表-->
+<div class="modal fade" id="addDeedModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                创建契约单
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span class="nowUser">当前用户</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong class="userMsg"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label" style="padding-top: 0;padding-right: 15px">
+                            <span>类型</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            <strong class="typeMsg"></strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">餐厅</label>
+                        <div class="col-md-6 col-sm-6 restaurant-box">
+                            <input type="text" id="restaurant" class="form-control" verify="required">
+                            <div class="restaurant-list" ></div>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入餐厅地址">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">约饭地址</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" id="address" class="form-control" verify="required" readonly>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入约饭地址">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">性别</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control" id="gender" verify="required">
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择性别">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">年龄</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control agerangeSelect" verify="required">
+                                <option value="0">不限</option>
+                                <option value="1">25以下</option>
+                                <option value="2">25-35</option>
+                                <option value="3">35以上</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择年龄阶段">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">约饭时间</label>
+                        <div class="col-md-6 col-sm-6 timerRange">
+                            <div>
+                                <input type="text" id="starttime" class="form-control layui-input"
+                                       style="border-radius: 4px;"
+                                       verify="required" readonly>
+                            </div>
+                            <span> &nbsp;_&nbsp; </span>
+                            <div>
+                                <input type="text" id="endtime" class="form-control layui-input"
+                                       style="border-radius: 4px;"
+                                       verify="required" readonly>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择约饭时间">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group spendBox">
+                        <label class="col-md-3 col-sm-3 control-label">赏金</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="number" id="posit" class="form-control" min="0" verify="num">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入赏金">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group spendBox nearbyBox">
+                        <label class="col-md-3 col-sm-3 control-label">经/纬度</label>
+                        <div class="col-md-6 col-sm-6 timerRange">
+                            <div>
+                                <input type="number" id="latitude" value="22.591148" class="form-control" placeholder="经度"
+                                       verify="required">
+                            </div>
+                            <span> &nbsp;_&nbsp; </span>
+                            <div>
+                                <input type="number" id="longitude" value="113.961323" class="form-control" placeholder="纬度"
+                                       verify="required">
+                            </div>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                  title="用户在的的经度,范围-180~180">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group nearbyBox">
+                        <label class="col-md-3 col-sm-3 control-label">支付方式</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control" id="payway" verify="required">
+                                <option value="aa">AA制度</option>
+                                <option value="me">我买单</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择支付方式">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group makeBox">
+                        <label class="col-md-3 col-sm-3 control-label">诚意金</label>
+                        <div class="col-md-6 col-sm-6 timerRange">
+                            <div>
+                                <input type="number" id="getposit1" class="form-control layui-input"
+                                       style="border-radius: 4px;"
+                                       verify="num">
+                            </div>
+                            <span> &nbsp;_&nbsp; </span>
+                            <div>
+                                <input type="number" id="getposit2" class="form-control layui-input"
+                                       style="border-radius: 4px;"
+                                       verify="num">
+                            </div>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                            <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择约饭时间">
+                                <i class="fa fa-question-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <span class="tip"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-purple btn-modal" onclick="submitAddData()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>

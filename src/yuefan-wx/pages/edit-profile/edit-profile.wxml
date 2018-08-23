@@ -1,0 +1,68 @@
+<view class='avatar-container' ontap='uploadImage' data-type='avatar'>
+  <image class='avatar' src='{{avatar}}'></image>
+  <text class='text'>更换头像</text>
+  <image class='arrow-right' src='../../img/arrow-right.png'></image>
+</view>
+
+<view class='container'>
+  <view class='title'>
+    <text>形象照</text>
+    <text class='tip'>(最多可上传五张)</text>
+  </view>
+  <view class='image-content'>
+    <view class='image-item' wx:key='*this' wx:for='{{personality}}'>
+      <image class='delete' bindtap='deleteImgage' data-type='personality' data-index='{{index}}' src='../../img/ban.png'></image>
+      <image class='thumbnail' bindtap='preview' data-type='personality' data-index='{{index}}' mode='aspectFit' src='{{item}}'></image>
+    </view>
+    <view class='image-item' bindtap='uploadImage' wx:if='{{!personality||personality.length<5}}' data-type='personality'>
+      <image class='thumbnail add' src='../../img/add.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='container'>
+  <view class='title'>
+    <text>相册</text>
+    <text class='tip'>(最多可上传九张)</text>
+  </view>
+  <view class='image-content'>
+    <view class='image-item' wx:key='*this' wx:for='{{album}}'>
+      <image class='delete' bindtap='deleteImgage' data-type='album' data-index='{{index}}' src='../../img/ban.png'></image>
+      <image class='thumbnail' bindtap='preview' data-type='album' data-index='{{index}}' mode='aspectFit' src='{{item}}'></image>
+    </view>
+    <view class='image-item' bindtap='uploadImage' wx:if='{{!album||album.length<9}}' data-type='album'>
+      <image class='thumbnail add' src='../../img/add.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='container' style='padding-bottom:46rpx'>
+  <view class='title'>
+    <text>视频</text>
+  </view>
+  <view class='video-content' catchtap='uploadVideo'>
+    <video wx:if='{{attestvideo}}' id="myVideo" class='video' catchtap='playVideo' src="{{attestvideo}}"></video>
+    
+    <view wx:else class='video'>
+      <image class='uploadvideo' src='../../img/video.png'></image>
+      暂未上传
+    </view>
+    <text class='tip'>(点击上传视频)</text>
+  </view>
+</view>
+<view class='container' style='padding:16rpx 0 28rpx 0'>
+  <view class='profile-item'>
+    <text style='min-width:5em'>出生日期</text>
+    <picker class='content' mode="date" fields="day" value="{{date}}" start="1970-01-01" end="{{today}}" bindchange="bindDateChange">
+      <text>{{formatedDate}}</text>
+      <image class='edit' src='../../img/pen-purple.png'></image>
+    </picker>
+  </view>
+  <view class='profile-item'>
+    <text style='min-width:5em'>身高</text>
+    <picker class='content' bindchange="bindHeightChange" value="{{hIndex}}" range="{{heightArr}}">
+      <text>{{heightArr[hIndex]}}</text>
+      <image class='edit' src='../../img/pen-purple.png'></image>
+    </picker>
+  </view>
+</view>

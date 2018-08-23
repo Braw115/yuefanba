@@ -1,0 +1,82 @@
+/* pages/deed/deed.wxss */
+
+page {
+  background-color: #f3f3f3;
+  height: 100%;
+}
+.bg{
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.prompt-img{
+  width: 98rpx;
+  height: 108rpx;
+  margin: 395rpx 330rpx 20rpx;
+}
+
+.prompt{
+  text-align: center;
+  font-size: 34rpx;
+  margin: 5rpx;
+  color: #BBBBBB;
+
+}
+
+.deed-box {
+  margin: 25rpx;
+  border-radius: 15rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+  font-size: 25rpx;
+  height: 330rpx;
+}
+
+.deed_type {
+  padding: 34rpx;
+  background-color: #fff;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.content-box {
+  padding: 10rpx;
+  margin: 0 15rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+ }
+.mealtime{
+  color: #999999;
+  font-size: 30rpx;
+}
+.mealtime text{
+  color: #666666;
+  font-size: 30rpx;
+}
+
+.content-box view{
+  font-weight: bold;
+  margin:0rpx 10rpx 15rpx;
+}
+
+.cancel-box {
+  background-color: #fff;
+  padding: 15rpx;
+  text-align: right;
+}
+
+.cancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 186rpx;
+  height: 60rpx;
+  border-radius: 45rpx;
+  box-shadow: 9rpx 9rpx 8rpx rgba(250, 57, 112, 0.4);
+  background: linear-gradient(to right, #fe417c, #eb1840);
+  color: #FEFEFF;
+  font-size: 30rpx;
+  margin: -30rpx 480rpx;
+}
+
+

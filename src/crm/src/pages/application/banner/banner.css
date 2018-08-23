@@ -1,0 +1,101 @@
+.max-250 {
+    display: block;
+    margin: 0 auto;
+    width: 250px;
+    max-width: 250px;
+    max-height: 250px;
+    word-break: break-all;
+}
+
+.maxH250 {
+    width: 100%;
+    height: 250px;
+    max-height: 250px;
+}
+
+.modalPosi {
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.imgCont {
+    position: relative;
+    padding: 0 50px;
+    margin-bottom: 15px;
+}
+
+.imgCont .delImg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 60px;
+    text-align: center;
+    line-height: 250px;
+    color: #fff;
+}
+
+.imgCont .editImg {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    font-size: 22px;
+    text-align: center;
+    color: #666;
+    overflow: hidden;
+}
+
+.imgCont .editImg .add {
+    float: left;
+    width: 100%;
+    height: 250px;
+    padding-top: 50px;
+    margin: 0;
+    border: 1px dashed #888;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.imgCont .editImg:hover {
+    background: lightgreen;
+}
+
+.imgCont .editImg .add span {
+    font-size: 60px;
+    color: #888;
+    display: block;
+}
+
+.imgCont .editImg a {
+    text-decoration: none;
+    color: #888;
+}
+
+.imgCont .editImg .add input {
+    width: 100%;
+    height: 250px;
+    font-size: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#comdTableLi {
+    display: none;
+}
+
+.imgCont, .editBanTip {
+    display: none;
+}

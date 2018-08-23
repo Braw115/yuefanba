@@ -1,0 +1,14 @@
+<view class='list'>
+  <navigator url='../modify-phone/phase-one' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>更换手机号</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+  <navigator url='../about-us/about-us' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>关于我们</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+</view>

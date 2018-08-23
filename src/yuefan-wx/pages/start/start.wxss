@@ -1,0 +1,105 @@
+/* pages/start/start.wxss */
+.bg{
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  
+}
+
+.picker {
+  margin: 0 auto;
+  display: flex; 
+  position: relative;
+  top: 730rpx;
+  width: 355rpx;
+  font-size: 35rpx;
+}
+.picker .text{
+  line-height: 2.2;
+   display: block; 
+  flex: 1;
+  color: #ffffff;
+  font-family: FZZHYK--GBK1-0;
+
+}
+.xiala{
+  width: 30rpx;
+  height: 18rpx;
+  margin: 30rpx 5rpx;
+}
+.birth{
+  margin: 0 7rpx;
+  color: #F2F2F2;
+}
+
+.picker text {
+  line-height: 2.2;
+  display: block;
+  flex: 1;
+  color: #999999;
+  font-family: FZZHYK--GBK1-0;
+}
+
+.picker text:nth-of-type(2){
+  color: #ffffff;
+  flex: 1.7;
+  text-align:right;
+}
+
+.picker text:nth-of-type(3) {
+  flex: 1.1;
+  position: relative;
+  text-align: right;
+}
+
+.picker text:nth-of-type(3)::after {
+  content: '';
+  position: absolute;
+  right: 16rpx;
+  top: 33rpx;
+  height: 4rpx;
+  border: 20rpx solid transparent;
+  border-radius: 8rpx;
+  border-top-color: #ffffff;
+}
+
+.notice {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #999999;
+}
+
+.notice text {
+  color: #8878FF;
+}
+.notice navigator:active {
+  opacity: 0.7;
+}
+
+.start-btn {
+  background: #fe417c;
+  width: 520rpx;
+  border-radius: 50rpx;
+  margin: 0 auto;
+  line-height: 90rpx;
+  text-align: center;
+  margin-top: 790rpx;
+  font-size: 34rpx;
+  color: #ffffff;
+  opacity: 0.4;
+}
+
+.active {
+  opacity: 1;
+}
+.section{
+ margin: 80rpx;
+}
+.footer{
+  position: fixed;
+  bottom: 80rpx;
+  margin-left: 15%;
+}

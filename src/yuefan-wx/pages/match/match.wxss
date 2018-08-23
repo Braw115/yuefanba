@@ -1,0 +1,195 @@
+page {
+  height: 100%;
+  background: #eaeaea;
+}
+
+.movable-area {
+  width: 300%;
+  height: 300%;
+  position: fixed;
+  left: -100%;
+  top: -100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content .name {
+  font-size: 36rpx;
+  display: inline-block;
+  line-height: 1;
+  margin: 30rpx;
+}
+
+.extra {
+  display: flex;
+  align-items: center;
+  margin-left: 33rpx;
+}
+
+.info-block {
+  display: flex;
+  background: #fe417c;
+  border-radius: 8rpx;
+  align-items: center;
+  justify-content: center;
+  height: 40rpx;
+  padding: 8rpx 12rpx;
+}
+
+.info-block text {
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.info-block image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 6rpx;
+}
+
+.info-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.view-icon {
+  width: 24rpx;
+  height: 20rpx;
+  margin-right: 6rpx;
+}
+
+.view-num {
+  margin-right: 32rpx;
+  color: #666;
+  font-size: 30rpx;
+}
+
+.border {
+  position: absolute;
+  top: 860rpx;
+  left: 42rpx;
+  width: 664rpx;
+  height: 40rpx;
+}
+
+.empty-container {
+  box-shadow: 8rpx 4rpx 14rpx #d4d5d9;
+}
+
+.empty-content {
+  position: absolute;
+  top: 280rpx;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-img {
+  width: 84rpx;
+  height: 78rpx;
+}
+
+.empty-tip {
+  font-size: 30rpx;
+  color: #999;
+  margin: 40rpx 0 0 16rpx;
+}
+
+.bottom-view {
+  position: absolute;
+}
+
+.match-img {
+  width: 100%;
+  height: 650rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  flex-shrink: 0;
+}
+
+.like-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 46rpx;
+}
+
+.like-info text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.avatar-array {
+  display: flex;
+  margin-top: 20rpx;
+  flex-direction: row-reverse;
+  min-height: 45rpx;
+}
+
+.avatar {
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 115rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #fff;
+  padding: 35rpx;
+  transition: all 200ms;
+}
+
+.like {
+  padding: 32rpx 30rpx;
+}
+
+.active {
+  transform: scale(1.2);
+}
+
+.full-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.full-tip {
+  margin: 504rpx auto 0 auto;
+  background: #fff;
+  font-size: 30rpx;
+  color: #666;
+  width: 290rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
+  line-height: 48rpx;
+  text-align: center;
+}

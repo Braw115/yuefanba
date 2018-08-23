@@ -1,0 +1,142 @@
+.bg {
+  width: 100%;
+  overflow: hidden;
+  height: 1230rpx;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+}
+
+page {
+  width: 100%;
+  overflow: hidden;
+}
+
+.scan {
+  width: 100%;
+  margin-top: 51rpx;
+  border-radius: 50%;
+  margin-left: -1rpx;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .scan-start {
+  transition: transform 6s linear;
+  transform: rotate(1080deg);
+} */
+
+.center {
+  position: absolute;
+  top: 380rpx;
+  left: 49%;
+  transform: translateX(-40rpx);
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.clear-position {
+  position: absolute;
+  top: 45rpx;
+  right: 20rpx;
+  width: 136rpx;
+  height: 50rpx;
+}
+
+.clear-position .clear-img {
+  width: 100%;
+  height: 100%;
+}
+
+.invite-container {
+  height: 160rpx;
+  width: 100%;
+}
+
+.invite {
+  height: 116rpx;
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.invite .avatar {
+  margin: 18rpx;
+}
+
+.tip {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.tip text {
+  color: #838383;
+}
+
+.contract {
+  padding: 11rpx 45rpx;
+  margin-top: 55rpx;
+  background-color: #fff1f5;
+  height: 185rpx;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.info-row {
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.info-row .icon {
+  width: 26rpx;
+  height: 26rpx;
+  margin: 8rpx 18rpx 0 0;
+}
+
+.name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30rpx;
+  color: #838383;
+}
+
+.circle-center {
+  position: absolute;
+  top: 414rpx;
+  left: 50%;
+}
+
+.random {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.no-deed {
+  font-size: 35rpx;
+  color: #838383;
+  margin-top: 40rpx;
+  text-align: center;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

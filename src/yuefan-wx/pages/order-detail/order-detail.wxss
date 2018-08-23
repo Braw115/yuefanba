@@ -1,0 +1,240 @@
+text {
+  font-size: 30rpx;
+  color: #666;
+}
+.inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-view {
+  display: flex;
+  align-items: flex-start;
+  margin: 0 18rpx;
+  border-bottom: 2rpx solid #eee;
+  padding: 65rpx 0 50rpx 0;
+}
+
+.top-text {
+  display: flex;
+  flex: 1;
+  position: relative;
+  top: -30rpx;
+  left: 45rpx;
+  width: 700rpx;
+  height: 250rpx;
+  }
+
+.top-title {
+  font-size: 34rpx;
+  padding-bottom: 110rpx;
+  font-weight: bold;
+  width: 580rpx;
+  height: 120rpx;
+  justify-content: space-around;
+  display: flex;
+}
+
+.avatar-block {
+  position: relative;
+  top: 100rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx 0 0;
+  flex-shrink: 0;
+  right: 390rpx;
+}
+
+.avatar {
+  padding: 6rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border: 1rpx dashed #fd5e7b;
+  border-radius: 50%;
+}
+
+.avatar-box {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.expired .avatar {
+  border-color: #bbb;
+}
+
+.arrow {
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 10rpx;
+}
+.down-view{
+  background-color: #fffafb;
+  height:1400rpx;
+  margin-top: -10rpx;
+}
+
+.main-view {
+  padding: 0rpx 44rpx 26rpx 44rpx;
+  margin-top: 7rpx;
+  position: relative;
+  top: 50rpx;
+
+}
+.main-view .icon{
+  width: 26rpx;
+  height: 26rpx;
+  margin: 8rpx 18rpx 0 0;
+}
+
+.item-row {
+  display: flex;
+  padding: 10rpx 0;
+  margin-top: 12rpx;
+}
+
+.title {
+  padding-right: 30rpx;
+  flex-shrink: 0;
+  color:#7b7b7b;
+}
+
+.content {
+  flex: 1;
+  color: #838383;
+  font-size: 30rpx;
+}
+.content2{
+  color: #838383;
+  font-size: 26rpx;
+  margin-top: -20rpx;
+}
+/* .content text{
+  color: #fe417c;
+} */
+.content .coin{
+  color: #fe417c;
+  margin-left: 20rpx;
+}
+.chat-img{
+  width: 42rpx;
+  height: 38rpx;
+  position: relative;
+  left: -15rpx;
+  top: 10rpx;
+}
+.chat-btn{
+  width: 510rpx;
+  height: 80rpx;
+  background: linear-gradient(to right, #fe417c, #eb1840);
+  border-radius: 45rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 34rpx;
+  background-color: #fe417c;
+  position: relative;
+  margin: 115rpx;
+  top: 40rpx;
+  left: 15rpx
+ 
+}
+.chat-text{
+  color: #ffffff;
+}
+
+.chat {
+  color: #8878ff;
+}
+
+.bottom-view {
+  padding: 0 44rpx;
+  margin-top: 60rpx;
+}
+
+.comment-row {
+  display: flex;
+  align-items: center;
+  min-height: 70rpx;
+}
+.comment-row text{
+  color: #838383;
+}
+
+.star-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+}
+
+.star {
+  width: 36rpx;
+  height: 34rpx;
+  padding: 10rpx;
+  box-sizing: content-box;
+}
+
+.icon-edit {
+  width: 24rpx;
+  height: 28rpx;
+  padding: 10rpx;
+  box-sizing: content-box;
+}
+
+.save {
+  display: inline-block;
+  padding: 10rpx;
+  color: #8878ff;
+}
+
+.textarea {
+  display: block;
+  background: #f5f5f5;
+  padding: 20rpx;
+  font-size: 30rpx;
+  width: 100%;
+  min-height: 250rpx;
+  margin-bottom: 30rpx;
+  color: #666666;
+}
+
+.textcommon {
+  display: block;
+  padding: 20rpx;
+  font-size: 30rpx;
+  width: 100%;
+  min-height: 250rpx;
+  margin-bottom: 30rpx;
+  color: #666666;
+}
+
+.counter {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  color: #999;
+}
+
+.timer {
+  padding-top: 0rpx;
+  font-size: 30rpx;
+}
+.return-index{
+  font-size: 30rpx;
+  color: #838383;
+  text-decoration: underline;
+  width: 140rpx;
+  margin: -55rpx auto;
+  
+}
+.return-index text{
+  color: #838383;
+}

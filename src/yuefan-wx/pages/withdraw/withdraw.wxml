@@ -1,0 +1,13 @@
+<view class='top-view'>
+  <view class='withdraw-text'>可提现额度</view>
+  <view class='withdraw-tooken'>
+    <text class="withdraw-amount">{{balance}}</text>
+    <text class="withdraw-money"> 元</text>
+  </view>
+  <input class='withdraw-input' type='digit' bindinput="bindKeyInput" confirm-type='done' placeholder='请输入提现金额' placeholder-style='color:#999999;'></input>
+  <view class='withdraw-prompt'>
+    <text>申请提现后, 需要7 - 10个工作日到达您的账户</text>
+    <text>提现手续费为5%</text>
+  </view>
+  <view class='{{"withdraw-btn "+(active?"active":"")}} btn-shadow' bindtap='submit' hover-class='{{active?"btn-press":""}}'>确定提现</view>
+</view>

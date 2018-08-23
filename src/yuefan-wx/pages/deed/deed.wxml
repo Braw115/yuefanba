@@ -1,0 +1,40 @@
+<!--pages/deed/deed.wxml-->
+<view class='bg'  wx:if="{{deedArr.length===0}}">
+<image class='prompt-img' wx:if="{{deedArr.length===0}}" src='../../img/dingdan@2x.png'></image>
+<view class='prompt' wx:if="{{deedArr.length===0}}">你还没有契约单哦~</view>
+</view>
+<view class='deed-box' wx:for='{{deedArr}}' wx:key="{{item.uuid}}">
+  <view class='deed_type'>契约单类型:
+    <!-- <text>我要赚钱{{item.type}}</text> -->
+    <text wx:if="{{item.type==='make'}}">我要赚钱</text>
+    <text wx:if="{{item.type==='spend'}}">我要花钱</text>
+    <text wx:if="{{item.type==='nearby'}}">附近约饭</text>
+  </view>
+  <!-- <view>契约单类型: <text>我要花钱</text></view>
+  <view>契约单类型: <text>附近约饭</text></view>
+  type:
+    make ->我要赚钱
+    spend ->我要花钱
+    nearby ->附近约饭
+  -->
+  <view class='content-box'>
+    <view class='mealtime'>
+    约饭时间:
+      <text wx:if="{{item.type!='make'}}">{{item.mealtime[0]}}</text>
+       <text wx:if="{{item.type ==='make'}}">{{item.mealtime[0]+'~'+item.mealtime[1]}}</text>
+    </view>
+    <view class='mealtime'>
+    支付方式:
+      <text wx:if="{{item.payway==='aa'}}">AA制</text>
+      <text wx:if="{{item.payway==='me'}}">我请客</text>
+    </view>
+    <!-- <view class='payway'>
+    支付方式:
+      <text>我请客</text>
+    </view> -->
+  </view>
+
+  <view class='cancel-box'>
+    <button class='cancel' hover-class='navigator-hover' data-uuid='{{item.uuid}}' bindtap='cancelDeed'>取消发布</button>
+  </view>
+</view>

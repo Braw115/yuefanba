@@ -1,0 +1,2 @@
+<!--pages/link-to.wxml-->
+<web-view wx:if='{{link}}' src='{{link}}' bindmessage='turnToMin'></web-view>

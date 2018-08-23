@@ -1,0 +1,59 @@
+<view class='list'>
+  <navigator url='../profile/profile' hover-class='navigator-hover'>
+    <view class='item' id='profile'>
+      
+      <view class='profile-text'>
+      <view>
+      <image class='avatar' src='{{avatar}}'> </image>
+      </view>
+      <view class='profile-main'>
+      <text class='title'>{{nickname}}</text>
+      <!-- <image class='icon' src='../../img/{{userInfo.gender? "boy3@2x":"woman@2x"}}.png'></image> -->
+      <image class='icon' src='../../img/{{gender?"man@2x":"woman@2x"}}.png'></image>
+       <text class="profile-sex">{{age}}岁</text> 
+      </view>
+      </view>
+  </view>
+  </navigator>
+  <navigator url='../order/order' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>我的饭单</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+ <navigator url='../deed/deed' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>我的契约单</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+<navigator url='../message/message' hover-class='navigator-hover'>
+    <view class='item'>
+     <text class='item-text'>消息</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+  
+  <navigator url='../token/token' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>吃货币</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+  </navigator>
+
+  <navigator url='../setting/setting' hover-class='navigator-hover'>
+    <view class='item'>
+      <text class='item-text'>设置</text>
+      <image class='arrow-right' src='../../img/rught@2x.png'></image>
+    </view>
+    </navigator>
+ 
+  <navigator hover-class='navigator-hover'>
+  <view class='item' hover-class='navigator-hover' bindtap='customService'>
+    <text class='item-text'>联系客服</text>
+    <image class='arrow-right' src='../../img/rught@2x.png'></image>
+  </view>
+   </navigator>
+
+  <view class='has-msg' wx:if='{{hasUnread}}'></view>
+</view>

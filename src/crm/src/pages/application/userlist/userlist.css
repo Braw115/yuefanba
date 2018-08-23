@@ -1,0 +1,185 @@
+.avatar {
+    margin: 0 auto;
+    max-width: 95px;
+    width: 95px;
+    overflow: hidden;
+    display: inherit;
+}
+.avatar img{
+    max-height: 100px;
+}
+
+.avatar .btn {
+    margin-bottom: 5px;
+}
+
+a img {
+    width: 100%;
+}
+
+.video-box {
+    padding: 0 5%;
+}
+
+.video-box video {
+    display: block;
+    margin: 0 auto;
+    width:100%;
+}
+
+.album-box, .avatar-box, .video-box, .personality-box {
+    display: none;
+}
+
+/*上传相册样式*/
+.uploadBox {
+    margin-bottom: 15px;
+}
+
+.editModalPosi {
+
+    display: inline;
+}
+
+.editModalPosi li {
+    margin: 0 2px;
+}
+
+.editModalPosi .modal-subtitle {
+    margin: 8px 0 6px 0;
+}
+
+.editImgShow {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 170px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.editImgShow {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.editImgShow img {
+    display: inline-block;
+    border-radius: 5px;
+    height: 170px;
+    max-height: 170px;
+    width: 100%;;
+}
+
+.delImg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    font-size: 60px;
+    text-align: center;
+    line-height: 170px;
+    color: #fff;
+}
+
+.modal-body .shopBAnTip {
+    line-height: 34px;
+    text-align: left;
+}
+
+.editImg {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 170px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+    color: #666;
+    display: inline-block;
+}
+
+.editImg .add {
+    float: left;
+    width: 100%;
+    height: 170px;
+    padding-top: 0;
+    margin: 0;
+    border: 1px dashed #888;
+    border-radius: 5px;
+    color: #888;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.editImg:hover {
+    background: #605ca8;
+    color: #fff;
+}
+
+.editImg .add:hover {
+    color: #fff;
+}
+
+.editImg:active {
+    box-shadow: 3px 8px 5px #999 inset;
+}
+
+.editImg .add span {
+    margin-top: 20px;
+    font-size: 50px;
+    display: block;
+}
+
+.editImg .add input {
+    width: 100%;
+    height: 170px;
+    font-size: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.personality-box .editImgShow, .personality-box .editImg {
+    width: 230px;
+}
+
+/*上传相册样式*/
+
+.del-video-btn {
+    padding: 10px 0;
+}
+
+.formHtml {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle
+}
+.btn-xs,.btn{
+    overflow: hidden;
+}
+td{
+    justify-align:center;
+}
+
+th .fa{
+    cursor: pointer;
+}
+
+th .fa-sort-amount-desc,.child .fa{
+    display: none;
+}

@@ -1,0 +1,403 @@
+hyx:电脑ip及端口信息
+ip:192.168.0.136
+port:5000
+
+
+
+一）小程序：
+
+1.code换取openid、session_key
+method:get
+url:http://192.168.0.136:5000/appusers/getopenid
+param:{code}	code：微信code
+return: { openid, session_key }
+
+2.登录
+method:post
+url:http://192.168.0.136:5000/appusers/login
+param:{ code, nickname, avatar }   code:微信code, nickname:昵称, avatar：头像
+return:
+	1）非首次登录：{ uuid, token, openid }
+	2）首次登录：{ uuid, token, openid, "msg": "user not exist!" }
+	
+3.首次授权添加身高、性别、年龄
+method:put
+url:http://192.168.0.136:5000/appusers/addbaseinfo
+param:{ sex, age, height, openid }  sex：性别, age：年龄, height：身高, openid
+return:{ "msg": "添加基本资料成功" }
+
+4.修改手机号
+method:put
+url:http://192.168.0.136:5000/appusers/updatephone
+param:{ phone }			phone：手机号
+return:{ "msg": "修改手机号成功" }
+
+5.修改/上传媒体文件（其中包括头像、认证视频、个性展示、相册）
+method:post
+url:http://192.168.0.136:5000/appusers/media
+param:{ uploadfidld, url }		--uploadfidld（必传）:"avatar"-头像, "attestvideo"-认证视频, "personality"-个性展示, "album"-相册，--url（传：修改，不传：添加） url：需要修改的图片的url
+return:{ data: { path: mediaArr } }
+
+6.删除媒体文件
+method:delete
+url:http://192.168.0.136:5000/appusers/media
+param:{ url, delFidld }		--delFidld："attestvideo"-认证视频, "personality"-个性展示, "album"-相册   url:需要删除媒体文件的url
+return:{ msg: "deleted ok!" }
+
+7.获取验证码
+method:post
+url:http://192.168.0.136:5000/appusers/getcode
+param:{ phone } 
+return:{ msg: "验证码请求成功" }
+
+8.绑定手机号
+method:post
+url:http://192.168.0.136:5000/appusers/regphone
+param:{ phone, code }		phone:手机号, code：验证码
+return:{ msg: "绑定手机号成功！" }
+
+9.所有线上轮播图列表
+method:get
+url:http://192.168.0.136:5000/appbanner/bannerlist
+param:无
+return:[{},{}....]
+
+
+
+
+一）CRM后台管理：
+
+1.登录
+method:post
+url:http://192.168.0.136:5000/crmusers/login
+param:{ phone, password }		phone：登陆用户, password：密码
+return:{ uuid, token, phone, role }
+
+
+2.登出
+method:post
+url:http://192.168.0.136:5000/crmusers/logout
+param:无
+return:{ "msg": "ok" }
+
+3、获取验证码
+method:post
+url:http://192.168.0.136:5000/crmusers/getcode
+param:{ phone }		phone：手机号
+return:{ msg: "验证码请求成功" }
+
+4.找回密码
+method:post
+url:http://192.168.0.136:5000/crmusers/findpassword
+param:{ phone, password, code }		phone：账号, password：新密码, code：验证码
+return:{ msg: "找回密码成功" }
+
+5.修改密码
+method:post
+url:http://192.168.0.136:5000/crmusers/updatepassword
+param:{ oldPassword, newPassword }		oldPassword：原密码, newPassword：新密码
+return:{ msg: "修改密码成功！" }
+
+6.root增加admin管理员(phone/password)
+method:post
+url:http://192.168.0.136:5000/crmusers/addadmin
+param:{ phone, password }		phone：新增的账号, password：密码
+return:{ msg: "添加管理员成功！" }
+
+7.root修改admin管理员(phone/password)
+method:put
+url:http://192.168.0.136:5000/crmusers/admin/:uuid
+param:{ uuid } { phone, password }
+return:{ msg: "修改成功！" }
+
+8.root查询admin管理员列表（phone/uuid/role/created/modified(前端过滤分页)）
+method:get
+url:http://192.168.0.136:5000/crmusers/findcrmusers
+param:无
+return:[{},{}...]
+
+9.admin查询app用户列表（下拉切换过滤：审核状态，模糊查询：phone,openid,nickname,排序：年龄，人气值，创建时间）
+method:get
+url:http://192.168.0.136:5000/crmusers/findusers
+param:{ start, length, draw, status, orderby, ascordesc }  --status："refuse"不通过, "accept"通过, "uncheck"未审核, "all"全部，--orderby："age"年龄, "popularity"人气值, "created"注册时间，--ascordesc："asc"升序, "desc"降序
+return:{ userList, recordsFiltered, draw }
+
+10.admin增加app用户数据（nickname/phone/personality/avatar/longitude/latitude/attestvideo/sex/age/height/balance）
+method:post
+url:http://192.168.0.136:5000/crmusers/addappuser
+param:{ nickname, phone, longitude, latitude, sex, age, height, balance }  nickname：昵称, phone：手机号, longitude：经度, latitude：纬度, sex：性别, age：年龄, height：身高, balance：余额
+return:{ msg: "添加用户成功" }
+
+11.删除用户数据（注意删除媒体文件）
+method:delete
+url:http://192.168.0.136:5000/crmusers/:uuid
+param:{ uuid }
+return:{ msg: "删除用户成功！" }
+
+12.admin修改app资料（nickname/phone/personality/avatar/longitude/latitude/attestvideo/sex/age/height/balance）
+method:put
+url:http://192.168.0.136:5000/crmusers/:uuid
+param:{ uuid }{ nickname, phone, longitude, latitude, sex, age, height, balance }		nickname：昵称, phone：手机号, longitude：经度, latitude：纬度, sex：性别, age：年龄, height：身高, balance：余额
+return:{ msg: "修改用户成功" }
+
+13.修改/上传媒体文件
+method:post
+url:http://192.168.0.136:5000/crmusers/
+param:{ uploadfield, url, uuid } --uploadfield"avatar"头像, "attestvideo"认证视频, "personality"个性展示, "album"相册  url：需要修改的媒体的url
+return:{ data: { path: mediaArr } }
+
+14.删除媒体文件
+method:delete
+url:http://192.168.0.136:5000/crmusers/media
+param:{ url, delfield, uuid } --delfield: "attestvideo"认证视频, "personality"个性展示, "album"相册  url：需要修改的媒体的url
+return:{ msg: "deleted ok!" }
+
+15.查看订单列表
+method:get
+url:http://192.168.0.136:5000/crmorder/orderlist
+param:{ start, length, draw, type, state } --type： either-单方评论 neither-双方未评 unusual-争议评 normal-正常单 all-全部  --state："new"新创建, "on"未完成, "off"完成, "wait"待处理, "all"全部
+return:{ orderList, recordsFiltered, draw }
+
+16.添加一条轮播图记录
+method:post
+url:http://192.168.0.136:5000/crmbanner/insert
+param:{ url, description, priority, state }  --priority：优先级1-5 ，--state："on"上线, "off"下线, "all"全部  url:轮播图外链url, description:轮播图描述
+return:{ msg: "添加轮播图成功！" }
+
+17.查看所有的轮播图列表
+method:get
+url:http://192.168.0.136:5000/crmbanner/bannerlist
+param:{ start, length, draw, state }   --state："on"上线, "off"下线, "all"全部
+return:{ bannerList, recordsFiltered, draw }
+
+18.修改轮播图基本信息
+method:put
+url:http://192.168.0.136:5000/crmbanner/:uuid 
+param:{ uuid }{ url, description, priority, state }  --priority：优先级1-5 ，--state："on"上线, "off"下线  url:轮播图外链url, description:轮播图描述
+return:{ msg: "添加轮播图基本信息成功！" }
+
+19.删除轮播图记录（包括轮播图中的图片）
+method:delete
+url:http://192.168.0.136:5000/crmbanner/:uuid
+param:{ uuid }
+return:{ msg: "删除轮播图信息成功！" }
+
+20.添加/修改媒体文件
+method:post
+url:http://192.168.0.136:5000/crmbanner/
+param: { url, uuid }		url：需要修改的媒体的url  uuid:需要修改的记录uuid
+return:{ data: { path: url } }
+
+21.删除媒体文件
+method:delete
+url:http://192.168.0.136:5000/crmbanner/media
+param:{ url, uuid } 		url：需要修改的媒体的url  uuid:需要修改的记录uuid
+return:{ msg: "deleted ok!" }
+
+22.查看支付列表
+method:get
+url:http://192.168.0.136:5000/paylog/paylist
+param:{ start, length, draw, type }  --type支付类型，recharge-充值 withdraw-提现	pay-契约花费 back-订单回退 all-全部
+return:{ payList, recordsFiltered, draw }
+
+23.获取管理员操作日志
+method:get
+url:http://192.168.0.136:5000/crmlog/
+param:{ start, length, draw, starttime, endtime }	starttime:操作记录开始时间, endtime：操作记录结束时间
+return:{ crmlog, recordsFiltered, draw }
+
+24.获取错误日志
+method:get
+url:http://192.168.0.136:5000/crmlog/error
+param:无
+return:"......"
+
+25.增加或者更新一个设置
+method:post
+url:http://192.168.0.136:5000/systeam/new
+param:{ key, value }    --key："pay"支付相关（充值4个选项，兑换比例，最低提现）, "orderstimeout"超时上限, "remind"短信相关
+return:{ key, value }
+
+26.查看全部系统设置
+method:get
+url:http://192.168.0.136:5000/systeam/
+param:无
+return:[{ pay, {} },{ orderstimeout, {} },{ remind, {} }]
+
+
+
+补充接口
+
+27.添加评论
+method:post
+url:http://192.168.0.136:5000/appcomments/add
+param:{ orderuuid, content, level }  orderuuid-订单uuid,content-评论内容, level-评论星级
+return:{ "msg": "评论成功" }
+
+28.修改认证视频审核状态
+method:put
+url:http://192.168.0.136:5000/crmusers/checkvideo/:uuid
+param:{ status, reason }
+return:{ "msg": "修改状态成功" } 
+
+29.更新个人实时数据
+method:post
+url:http://192.168.0.136:5000/appusers/syncinfo
+param:{ nickname, avatar, longitude, latitude, city }
+return:{ "msg": "更新个人实时数据成功" }
+
+30.修改身高/出生日期
+method:post
+url:http://192.168.0.136:5000/appusers/updatebaseinfo
+param:{ key, value }	--key(birthday、height)
+return:{ "msg": "更新成功" }
+
+31.后台获取评级列表
+method:get
+url:http://192.168.0.136:5000/crmusers/comments/:uuid
+param:无
+return:[{},{}...]
+
+32.修改后获取契约单列表
+method：get
+url:http://192.168.0.136:5000/crm/deed/
+param:{ state, type, result, address, restaurant, start, length, draw }  
+return:{ deeds, recordsFiltered: count, draw: parseInt(draw) }
+
+33.添加/取消收藏
+method：post
+url:http://192.168.0.136:5000/appusers/addordellikely
+param:{ action, uuidarr }   --action:0取消收藏,1添加收藏  
+return:{ "msg": "取消收藏成功" }  or { "msg": "添加收藏成功" }
+
+34.获取个人的收藏列表
+method：get
+url:http://192.168.0.136:5000/appusers/likelylist
+param:无 
+return:{ [],[]... }
+
+35.获取个人的信息
+method：get
+url:http://192.168.0.136:5000/appusers/:uuid
+param:{ uuid }
+return：{}
+
+36.改进后的创建订单方法
+method：post
+url:http://192.168.0.136:5000/app/order/
+param:{ result, noticeuuid, noticetype }  --result(refuse\accept) --noticetype（spend\make） noticeuuid(消息uuid)
+return：{ msg: "ok" }
+
+37.小程序首页点击附近的应邀
+method：post
+url:http://192.168.0.136:5000/app/notice/nearbyonhome
+param:{ deeduuid }  --deeduuid 对方的契约单uuid
+return：{ msg: "ok" }
+
+38.雷达图约人
+method：post
+url:http://192.168.0.136:5000/app/notice/nearbysearch
+param:{ otherdeeduuid, mydeeduuid }  --otherdeeduuid 对方的契约单uuid  --mydeeduuid 我的契约单uuid
+return：{ msg: "ok" }
+
+39.约主播吃饭
+method:post
+url:http://192.168.0.136:5000/app/notice/invite
+param:{ useruuid, mydeeduuid }	--useruuid(主播的uuid), --mydeeduuid(我的契约单uuid)
+return：{ msg: "ok" }
+
+40.上传聊天图片接口
+method:post
+url:http://192.168.0.136:5000/app/chat/media
+param:{ orderuuid }	--orderuuid（聊天相应的订单uuid）
+return：{ data: { path: tmpArr } }
+
+41.添加申诉接口
+method:post
+url:http://192.168.0.136:5000/app/appeal/add
+param:{ orderuuid, content }   --orderuuid（订单uuid）, --content(申诉内容)
+return：{ "msg": "ok" }
+
+42.获取申诉列表接口
+method:get
+url:http://192.168.0.136:5000/crm/appeal/list
+param:{ start, length, draw }
+return：{ appealList, recordsFiltered: res.count, draw: parseInt(draw) }
+
+43.订单中，“应邀”，“放鸽子”
+method:post
+url:http://192.168.0.136:5000/app/order/deelorder
+param:{ orderuuid, deel } 	--orderuuid（订单uuid）, --deel(应邀、放鸽子) “go”应邀，“notgo”放鸽子
+return：{ msg: "ok" }
+
+44.订单详情接口
+method：get
+url:http://192.168.0.50:5000/app/order/:uuid
+param:{ uuid } 	--uuid（订单uuid）
+return：{ }
+
+45.点击消息获取对方契约单详情
+method：get
+url:http://192.168.0.50:5000/app/notice/:uuid
+param:{} 	  --uuid（消息uuid）
+return：{}
+
+46.清楚位置
+method：post
+url:http://192.168.0.50:5000/app/deed/clearlocation
+param:{ deeduuid } 	  --deeduuid 需要清楚位置的契约单
+return:{ "msg": "ok" }
+
+47.契约单雷达图中有谁邀请过我
+method：get
+url:http://192.168.0.50:5000/app/notice/nearbyinvite
+param:{ deeduuid } 	  --deeduuid 查看该附近契约单有谁邀请过我的uuid
+return:{[][][]...}
+
+48.未读消息改为已读
+method：put
+url:http://192.168.0.50:5000/app/notice/state/read
+param:{ uuid }	  --uuid 需要读取的消息uuid
+return:{ "msg": "读取消息成功" }
+
+49.获取系统的押金
+method：get
+url:http://192.168.0.50:5000/app/deed/deposit
+param:无
+return:{deposit:50}
+
+50.app获取评论列表
+method：get
+url:http://192.168.0.50:5000/appcomments/getcomments
+param:{start,length,useruuid}
+return:{ commentlist:commentlist,level:level }
+
+51.app获取支付log列表
+method：get
+url:http://192.168.0.50:5000/apppaylog/payloglist
+param:{ start, length }
+return:{}
+
+52.app获取系统的充值比例
+method：get
+url:http://192.168.0.50:5000/apppaylog/getproportion
+param：无
+return:{ proportion: proportion }
+
+53.提交个人的formids数据
+method：post
+url:http://192.168.0.50:5000/appusers/saveformids
+param：{ formids } -formids收集到的用户的formid 数组
+return:{ "msg": "ok" }
+
+54.查找发布过赚钱单的热门用户
+method：get
+url:http://192.168.0.50:5000/appusers/hot
+param：{ start, length } 
+return: { [{},{}..] } --获取的列表
+
+55.约热门主播吃饭
+method：post
+url:http://192.168.0.50:5000/app/deed/invitehot
+param：{ useruuid, deeduuid, restaurant, address, mealtime, payway, deposit, latitude, longitude }
+return:{ msg: "ok" }

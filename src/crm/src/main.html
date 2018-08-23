@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <title>约饭吧后台管理系统</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="css/fontgoogle.css">
+    <link rel="stylesheet" href="./css/AdminLTE.min.css">
+    <link rel="stylesheet" href="./css/skins/skin-purple.min.css">
+    <link rel="stylesheet" href="./css/dataTables.bootstrap.css"/>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="./css/buttons.bootstrap.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/manage.css">
+    <link rel="stylesheet" href="./css/lightbox.css">
+    <link rel="stylesheet" href="./css/star-roting.css">
+    <link rel="stylesheet" href="js/lib/layer/skin/default/layer.css ">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini fixed">
+<div class="wrapper">
+    <header class="main-header">
+        <a href="#" class="logo">
+            <span class="logo-lg">约饭吧</span>
+            <span class="logo-mini">约饭</span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account: -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs username"><i class="fa fa-user-circle"></i> <span class="account"></span></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <div class="img-circle">
+                                    <i class="fa fa-user-circle"></i>
+                                </div>
+                                <p class="username account"></p>
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <button id="systemsettingBtn" class="btn btn-default" onclick="changePwd()">修改密码
+                                    </button>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-default">详情</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li class="js-logout">
+                        <a href="#" data-toggle="control-sidebar">
+                            <i class="fa fa-sign-out"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--侧边栏-->
+    <div class="main-sidebar">
+        <div class="sidebar">
+            <!-- 侧边主菜单 -->
+            <ul class="sidebar-menu">
+                <!--APP管理-->
+                <li class="treeview root">
+                    <a href="javascript:">
+                        <i class="fa fa-id-badge"></i>
+                        <span>APP管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <!--列表显示区域-->
+                        <li class="">
+                            <a href="#/application/userlist/userlist" data-html="application/userlist/userlist"
+                               data-js="application/userlist/userlist">
+                                <i class="fa fa-venus-mars"></i>APP用户列表</a>
+                        </li>
+                        <li class="">
+                            <a href="#/application/banner/banner" data-html="application/banner/banner"
+                               data-js="application/banner/banner">
+                                <i class="fa fa-venus-mars"></i>APP首页轮播</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--管理员账号列表-->
+                <li class="treeview admin">
+                    <a href="javascript:">
+                        <i class="fa fa-user"></i>
+                        <span>管理员账号管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/admin/adminlist/adminlist" data-html="admin/adminlist/adminlist"
+                               data-js="admin/adminlist/adminlist">
+                                <i class="fa fa-venus-mars"></i>管理员账号列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--约饭契约单列表-->
+                <li class="treeview root">
+                    <a href="javascript:">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span>契约单管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/appointment/appointmentlist/appointmentlist"
+                               data-html="appointment/appointmentlist/appointmentlist"
+                               data-js="appointment/appointmentlist/appointmentlist">
+                                <i class="fa fa-venus-mars"></i>契约单列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <!--约饭申诉列表-->
+                <li class="treeview root">
+                    <a href="javascript:">
+                        <i class="fa fa-tag"></i>
+                        <span>申述管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/appeal/appealList/appealList"
+                               data-html="appeal/appealList/appealList"
+                               data-js="appeal/appealList/appealList">
+                                <i class="fa fa-venus-mars"></i>申述列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--订单列表-->
+                <li class="treeview root">
+                    <a href="javascript:">
+                        <i class="fa fa-file-text"></i>
+                        <span>订单管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/order/orderlist/orderlist" data-html="order/orderlist/orderlist"
+                               data-js="order/orderlist/orderlist">
+                                <i class="fa fa-venus-mars"></i>订单列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--评论列表-->
+                <li class="treeview root">
+                    <a href="javascript:">
+                        <i class="fa fa-comment"></i>
+                        <span>评论管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/comment/commentlist/commentlist" data-html="comment/commentlist/commentlist"
+                               data-js="comment/commentlist/commentlist">
+                                <i class="fa fa-venus-mars"></i>评论列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--统计报告列表-->
+                <li class="treeview">
+                    <a href="javascript:">
+                        <i class="fa fa-line-chart"></i>
+                        <span>统计管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="root">
+                            <a href="#/statistics/paymentrecords/paymentrecords"
+                               data-html="statistics/paymentrecords/paymentrecords"
+                               data-js="statistics/paymentrecords/paymentrecords">
+                                <i class="fa fa-venus-mars"></i>App支付统计列表
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#/statistics/operationrecord/operationrecord"
+                               data-html="statistics/operationrecord/operationrecord"
+                               data-js="statistics/operationrecord/operationrecord">
+                                <i class="fa fa-venus-mars"></i>后台操作日志列表
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="#/statistics/errorrecord/errorrecord"
+                               data-html="statistics/errorrecord/errorrecord"
+                               data-js="statistics/errorrecord/errorrecord">
+                                <i class="fa fa-venus-mars"></i>错误日志列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--系统管理-->
+                <li class="treeview">
+                    <a href="javascript:">
+                        <i class="fa fa-cogs"></i>
+                        <span>系统管理</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="#/system/config/config"
+                               data-html="system/config/config"
+                               data-js="system/config/config">
+                                <i class="fa fa-venus-mars"></i>系统设置
+                            </a>
+                        </li>
+                        <!--<li class="">-->
+                            <!--<a href="#/system/systemsettings/systemsettings"-->
+                               <!--data-html="system/systemsettings/systemsettings"-->
+                               <!--data-js="system/systemsettings/systemsettings">-->
+                                <!--<i class="fa fa-venus-mars"></i>系统消息列表-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </li>
+            </ul>
+            <!--./sidebar-menu-->
+        </div>
+        <!--./sidebar-->
+    </div>
+    <!--./main-sidebar-->
+
+    <!--主要内容容器-->
+    <div class="content-wrapper">
+        <div class="content">
+            <!--内容区-->
+        </div>
+    </div>
+    <!--./content-wrapper-->
+
+    <!--网页脚-->
+    <footer class="main-footer">
+        <strong>Copyright &copy;</strong> 2018 约饭吧.
+    </footer>
+    <!--<div class="control-sidebar-bg"></div>-->
+</div>
+<!-- /.wrapper -->
+
+
+<!-- 修改密码 -->
+<div id="modal_change_pwd" class="modal fade" tabindex=-1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--头部-->
+            <div class="modal-header">
+                <h4 class="modal-title">修改密码</h4>
+            </div>
+
+            <!--主体-->
+            <div class="modal-body">
+                <form action="" class="form-horizontal">
+                    <!--<fieldset id="">-->
+                        <div class="form-group">
+                            <label for="old_password" class="col-xs-3 control-label">原密码</label>
+                            <div class="col-xs-7">
+                                <input type='password' id="old_password" value="" class="form-control password" autocomplete='tel'
+                                       verify="strlen 6 16"/>
+                            </div>
+                            <div class="col-xs-2 tip-icons">
+                                    <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                          title="密码长度不小于4位且不大于16位">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_password" class="col-xs-3 control-label">新密码</label>
+                            <div class="col-xs-7">
+                                <input type='password' id="new_password" value="" class="form-control" autocomplete='tel' verify="strlen 6 16"/>
+                            </div>
+                            <div class="col-xs-2 tip-icons">
+                                    <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                          title="密码长度不小于4位且不大于16位">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordb" class="col-xs-3 control-label">确认密码</label>
+                            <div class="col-xs-7">
+                                <input type='password' id="passwordb" value="" autocomplete='tel' verify="identical new_password"
+                                       class="form-control"/>
+                            </div>
+                            <div class="col-xs-2 tip-icons">
+                                    <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                          title="确认两次密码相同">
+                                        <i class="fa fa-question-circle"></i>
+                                    </span>
+                            </div>
+                        </div>
+                    <!--</fieldset>-->
+                </form>
+            </div>
+
+            <!--底部-->
+            <div class="modal-footer">
+                <span class="tip" style="height: auto;"></span>
+                <button class="btn btn-default cancel" data-dismiss="modal" aria-label="Close">取消</button>
+                <button class="btn btn-purple" id="changePwd">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!--全局模态提示框-->
+<div id="modal_tips" class="modal fade" tabindex=-1>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-p">
+                    <span></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary btn-modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /#modal_tips -->
+<script src="js/lib/jquery-1.11.1.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/layer/layer.js"></script>
+<script src="js/lib/jquery.cookie.js"></script>
+<script src="js/lib/jquery.slimscroll.min.js"></script>
+<script src="js/lib/jquery.dataTables.min.js"></script>
+<script src="js/lib/dataTables.responsive.js"></script>
+<script src="js/lib/dataTables.bootstrap.min.js"></script>
+<script src="js/lib/dataTables.buttons.min.js"></script>
+<script src="js/lib/buttons.print.min.js"></script>
+<script src="js/lib/buttons.bootstrap.min.js"></script>
+<script src="js/lib/jquery-form.js"></script>
+<script src="js/app.min.js"></script>
+<!--main-JS-->
+<script src="js/jquery.ext.verify.js"></script>
+<script src="js/common.js"></script>
+<script src="js/main.js"></script>
+<!--时间插件-->
+<script src="js/lib/laydate/laydate.js"></script>
+<!--评分器-->
+<script src="js/lib/star-roting.js"></script>
+<!--图片放大-->
+<script src="js/lib/lightbox.js"></script>
+</body>
+</html>

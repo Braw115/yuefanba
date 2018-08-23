@@ -1,0 +1,86 @@
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.withdraw-input {
+  width: 480rpx;
+  height: 90rpx;
+  font-size: 36rpx;
+  margin: 100rpx auto 110rpx auto;
+  /* border: 1rpx solid #fd5e7b; */
+  border-bottom: 2px solid #e1e1e1;
+  
+  text-align: center;
+  /* border-radius: 10rpx; */
+}
+
+.withdraw-text, .withdraw-tooken {
+  text-align: center;
+  margin-top: 25rpx;
+}
+
+.withdraw-text {
+  margin-top: 120rpx;
+  font-size: 30rpx;
+  color:#999999;
+}
+
+.withdraw-money {
+  color: #a1a1a1;
+}
+withdraw-amount{
+  color: black;
+}
+
+.withdraw-tooken text:nth-child(1) {
+  font-size: 95rpx;
+}
+
+.withdraw-prompt {
+  margin-bottom: 29rpx;
+  padding: 0 10rpx 0 144rpx;
+}
+
+.withdraw-prompt text {
+  color: #666666;
+  font-size: 26rpx;
+  display: block;
+  position: relative;
+}
+
+.withdraw-prompt text::before {
+  position: absolute;
+  content: '';
+  width: 6rpx;
+  height: 6rpx;
+  background: #d2d2d2;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -16rpx;
+  border-radius: 50%;
+}
+
+.withdraw-prompt text:nth-child(1) {
+  margin-bottom: 18rpx;
+}
+
+.withdraw-btn {
+  background: #fe91b3;
+  width: 666rpx;
+  border-radius: 50rpx;
+  margin: 0 auto;
+  line-height: 90rpx;
+  text-align: center;
+  margin-top: 58rpx;
+  font-size: 34rpx;
+  color: #fff;
+}
+
+.active {
+  background: linear-gradient(to right, #fe417c, #eb1840);
+}
+.btn-press{
+  background: linear-gradient(to right, #fe417c, #eb1840);
+}

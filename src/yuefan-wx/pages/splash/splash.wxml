@@ -1,0 +1,18 @@
+<image class='bg' mode='widthFix'></image>
+<text class='shouquan' wx:if='{{showModal}}'>授权登录中...</text>
+
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">未授权告示</view>
+    <view class="modal-content">
+      如需正常使用该小程序，需要获取您的用户个人信息，请按确定按钮予以授权！
+    </view>
+    <view class="modal-footer">
+      <!-- <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view> -->
+      <!-- <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view> -->
+      <button class="btn-cancel" bindtap="onCancel">取消</button>
+      <button bindgetuserinfo='getUserInfo' class="btn-confirm" open-type="getUserInfo">确定</button>
+    </view>
+  </view>
+
+

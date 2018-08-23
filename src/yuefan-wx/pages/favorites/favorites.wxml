@@ -1,0 +1,28 @@
+<view class='container'>
+  <view class='top-nav'>
+    <text wx:if="{{selectMode}}" ontap='selectAll'>全选</text>
+    <text wx:else ontap='toggleMode'>取消收藏</text>
+  </view>
+  <scroll-view scroll-y class='recommend-list'>
+    <block wx:key='uuid' wx:for='{{favArr}}'>
+      <view class='pop-container' bindtap='itemTap' data-index='{{index}}'>
+        <view class='recommend-item'>
+          <image class='avatar' src='{{item.avatar}}'></image>
+          <view class='avatar-info'>
+            <image class='icon-24' src='../../img/{{item.gender?"boy":"girl"}}.png'></image>
+            <text>{{item.age}}</text>
+          </view>
+        </view>
+        <view class='center-info'>
+          <view>
+            <text class='username'>{{item.nickname}}</text>
+          </view>
+          <text class='position'>{{item.city}}</text>
+        </view>
+        <view class='invite-btn' data-index='{{index}}' catchtap='invite'>约TA</view>
+      </view>
+      <image class='check' wx:if='{{item.selected}}' src='../../img/check.png'></image>
+    </block>
+  </scroll-view>
+  <view wx:if='{{selectMode}}' bindtap='unfav' class='unfavorite'>取消收藏</view>
+</view>

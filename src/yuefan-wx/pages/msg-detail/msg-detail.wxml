@@ -1,0 +1,104 @@
+
+<!-- <view class='reason' wx:if='{{btntype=="audit" && reason}}'> {{reason}}</view> -->
+
+<view class='contract' wx:if='{{btntype=="audit" && reason}}'>
+
+  <view class='info-row'>
+    <view class='icon'>
+      <image class='icon-img' src='../../img/yfb@2x.png'></image>
+    </view>
+    <view class='item-item'>
+      <text class='title-content'>小吧提醒 :</text>
+    </view>
+    <view class='item-reson'>
+      <text class='reason'>{{reason}}</text>
+    </view>
+  </view>
+  <view class='line'></view>
+  <view class='info-row'>
+    <view class='item-pay'>
+      <text class='item-pay'>{{info.payway==='me'?info.nickname+'请客':'AA制'}}</text>
+    </view>
+    <view class='item-info'>
+      <text class='name'></text>
+    </view>
+  </view>
+  <view class='info-row'>
+    <view class='item-item'>
+      <text class='item'>餐厅 :</text>
+    </view>
+    <view class='item-info'>
+      <text class='name'>{{info.restaurant}}</text>
+    </view>
+  </view>
+  <view class='info-row'>
+    <view class='item-item'>
+      <text class='item'>时间 :</text>
+    </view>
+    <view class='item-info'>
+      <text class='name'>{{info.mealtime}}</text>
+    </view>
+  </view>
+  <view class='info-row'>
+    <view class='item-item'>
+      <text class='item'>赏金 :</text>
+    </view>
+    <view class='item-info'>
+      <text class='name'>{{info.coin}}吃货币</text>
+    </view>
+  </view>
+</view>
+
+
+
+<view class='detail-box' wx:if='{{btntype!="audit"}}'>
+  <view class='top-view'>
+    <view class='top-text'>
+      <text class='top-title'>{{detailData.nickname}}的约饭单</text>
+      <!-- <text wx:if='{{detailData.type=="spend"}}'>赏金 <text class='coin'>{{detailData.deposit}}</text></text>
+      <text wx:if='{{detailData.type=="make"}}'>理想赏金 {{detailData.getdeposit[0]}} ~ {{detailData.getdeposit[1]}}</text> -->
+    </view>
+    <view class='avatar-block'>
+      <view class='avatar' bindtap='toPersonalCenter'>
+        <image src='{{detailData.avatar}}'></image>
+      </view>
+    </view>
+  </view>
+  <view class='main-view'>
+    <view class='item-row'>
+      <view class='title' wx:if='{{detailData.restaurant != "null" || detailData.address != "null"}}'>
+        <image class='res-icon' src='../../img/ct@2x.png'></image>
+        <!-- <view class='content-address'> -->
+          <text class='content'>{{detailData.restaurant}}</text>
+          <view class='address'>{{detailData.address}}</view>
+        <!-- </view> -->
+      </view>
+    </view>
+
+    <view class='item-row'>
+      <image class='clock-icon' src='../../img/shizhong@2x.png'></image>
+      <text class='content timer'>{{detailData.time}}</text>
+    </view>
+
+    <view class='item-row'>
+      <!-- <text wx:if='{{detailData.type=="spend"}}'>赏金 <text class='coin'>{{detailData.deposit}}</text></text> -->
+      <image class='clock-icon'></image>
+      <text class='content-coin' wx:if='{{detailData.type=="spend"}}'>赏金 <text class='coin'>{{detailData.deposit}}</text> 吃货币</text>
+      <text class='content-coin' wx:if='{{detailData.type=="make"}}'>
+       理想赏金  <text class='coin'> {{detailData.getdeposit[0]}} ~ {{detailData.getdeposit[1]}} </text> 吃货币
+      </text>
+    </view>
+
+  </view>
+  <!-- <view class='cancel-box'>
+    <button class='cancel'  wx:if='{{btntype!=="fromnearby" && btntype!=="receive" && btntype!=="fromhello" && btnresult=="null"}}'  hover-class='navigator-hover' data-uuid='{{detailData.uuid}}' bindtap='cancelDeed'>取消邀请</button>
+  </view>  -->
+  <view catchtap='acceptInvited' wx:if='{{btntype=="receive" && btnresult=="null"}}' class='invite-btn' hover-class='navigator-hover'>应邀</view>
+  <view catchtap='refuseInvited' wx:if='{{btntype=="receive" && btnresult=="null"}}' class='invite-btn2' hover-class='navigator-hover'>拒绝</view>
+
+  <view catchtap='acceptNearby' wx:if='{{btntype=="tonearby" && btnresult=="null"}}' class='invite-btn' hover-class='navigator-hover'>应邀</view>
+  <view catchtap='refuseNearby' wx:if='{{btntype=="tonearby" && btnresult=="null"}}' class='invite-btn2' hover-class='navigator-hover'>拒绝</view>
+
+  <view catchtap='greetInvited' wx:if='{{btntype=="tohello" && btnresult=="null"}}' class='invite-btn' hover-class='navigator-hover'>请客</view>
+  <view catchtap='notwillingInvited' wx:if='{{btntype=="tohello" && btnresult=="null"}}' class='invite-btn2 ' hover-class='navigator-hover'>不去</view> 
+</view>

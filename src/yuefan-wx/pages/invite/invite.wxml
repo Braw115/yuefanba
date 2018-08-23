@@ -1,0 +1,41 @@
+<page>
+  <view wx:if='{{gender}}' class='all'>
+
+    <!-- <image class='logo_icon' src='../../img/system-avatar.png'></image> -->
+    <view formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn logo '>
+      <image src='../../img/logo@2x.png'></image>
+    </view>
+
+
+    <form bindsubmit='doNearby' report-submit>
+      <button formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn main_btn '>
+        <image src='../../img/anniu@2x.png'></image>
+      </button>
+    </form>
+
+    <form wx:if='{{gender===2}}' bindsubmit='doMake' report-submit>
+      <button formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn sub-btn'>
+        <image src='../../img/zc@2x(1).png'></image>
+      </button>
+    </form>
+    <form wx:if='{{gender===1}}' bindsubmit='doSpend' report-submit>
+      <button formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn sub-btn'>
+        <image src='../../img/hq@2x(1).png'></image>
+      </button>
+    </form>
+
+    <form wx:if='{{gender===1}}' bindsubmit='doMake' report-submit>
+      <button formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn sub-btn2'>
+        <image src='../../img/zc@2x(1).png'></image>
+      </button>
+    </form>
+    <form wx:if='{{gender===2}}' bindsubmit='doSpend' report-submit>
+      <button formType="submit" data-type="click" hover-class='navigator-hover' class='wrap-btn sub-btn2'>
+        <image src='../../img/hq@2x(1).png'></image>
+      </button>
+    </form>
+
+    <image class='bg show' src='../../img/beij@2x.png' mode='aspectFill'></image>
+    <!-- <image class='bg {{gender===1?"show":""}}' src='../../img/bj@2x(1).png' mode='scaleToFill'></image> -->
+  </view>
+</page>

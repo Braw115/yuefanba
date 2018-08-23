@@ -1,0 +1,115 @@
+<page>
+<view class='all'>
+<view class='filter-title' bindtap='showFilter'>
+  <text wx:if='{{listType==="all"}}'>全部 </text>
+  <text wx:if='{{listType==="to"}}'>TA约我 </text>
+  <text wx:if='{{listType==="from"}}'>我约TA </text>
+  <text wx:if='{{listType==="systeam"}}'>系统通知 </text>
+  <image class='filter-img {{showFilter?"active":""}}' src='../../img/xiangxia@2x.png'></image>
+</view>
+
+<view class='filter-items' wx:if='{{showFilter}}'>
+  <view class='item-box'>
+    <view class='filter-item {{listType==="all"?"active":""}}' bindtap='setFilter' data-type='all'>全部</view>
+    <view class='filter-item {{listType==="to"?"active":""}}' bindtap='setFilter' data-type='to'>TA约我</view>
+    <view class='filter-item {{listType==="from"?"active":""}}' bindtap='setFilter' data-type='from'>我约TA</view>
+    <view class='filter-item {{listType==="systeam"?"active":""}}' bindtap='setFilter' data-type='systeam'>系统通知</view>
+  </view>
+</view>
+
+<view class='bg' wx:if="{{noticeArr.length===0}}">
+  <image class='new-img' wx:if="{{noticeArr.length===0}}" src='../../img/dingdan@2x.png'></image>
+  <view class='new' wx:if="{{noticeArr.length===0}}">你还没有消息哦~</view>
+</view>
+
+<view scroll-y class='msg-list'>
+  <block class="content">
+    <view class='msg-wrapper {{item.isTouchMove ? "touch-move-active" : ""}}' wx:for='{{noticeArr}}' wx:key='uuid' data-index='{{index}}' catchtap='goToMsgDetail' bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend='touchend'>
+      <view class='content'>
+        <view class='avatar-box'>
+          <!-- <image class='avatar' wx:if='{{item.avatar && item.type!="audit"}}' src='{{item.avatar}}'></image> -->
+          <!-- <image class='avatar' wx:if='{{item.type=="audit"}}' src='../../img/system-avatar.png'></image> -->
+          <!-- <image class='avatar' wx:if='{{item.ext.content}}' src='{{item.avatar}}'></image>
+        <image class='avatar' wx:if='{{item.ext.pic}}' src='{{item.avatar}}'></image>-->
+          <image class='avatar' wx:if='{{item.type=="audit"}}' src='../../img/system-avatar.png'></image>
+           <image class='avatar' wx:if='{{item.type!=="audit"}}' src='{{item.avatar}}'></image>
+          <view class='unread-tip' wx:if='{{item.state}}'></view>
+        </view>
+
+        <!-- <image class='avatar' src='../../img/avatar.png'></image> -->
+        <view class='msg-container'>
+          <view class='msg-row'>
+            <view class='username' wx:if='{{item.type!="audit"}}'>{{item.nickname}}</view>
+            <!-- <view class='username' wx:if='{{item.type=="audit" || !item.ext.content && !item.ext.pic}}'>通知</view> -->
+            <view class='username' wx:if='{{item.type=="audit"}}'>通知</view>
+
+            <view class='text-tip time'>{{item.created}}</view>
+          </view>
+          <view class='msg-row msg-main'>
+            <text class='text-tip text-msg' wx:if='{{item.ext.content && item.type!=="audit" }}'>{{ item.ext.content }}</text>
+            <view class='text-tip text-msg' wx:if='{{item.type=="audit" && item.reason }}'> {{item.reason}}</view>
+          </view>
+          <view class='msg-row msg-main' wx:if='{{item.ext.pic && item.type!=="audit" }}'>
+            <text class='text-tip text-msg'>[图片]</text>
+          </view>
+
+          <view class='msg-row msg-main' wx:if='{{!item.ext.content && !item.ext.pic}}'>
+            <view class='text-tip text-msg' wx:if='{{item.type=="audit" && !item.reason}}'>{{item.nickname}}正在寻找附近的饭友</view>
+            
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="send" && !item.result}}'>你向{{item.nickname}}发送了约饭邀请。</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="receive" && !item.result}}'>{{item.nickname}}向你发送了约饭邀请。</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="tohello" && !item.result}}'>TA向你打了招呼</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromhello" && !item.result}}'>你向{{item.nickname}}打了招呼</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="receive"    && item.result == "refuse"}}'>你已拒绝了{{item.nickname}}的约饭邀请。</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="send" &&     item.result == "refuse"}}'>{{item.nickname}}已经拒绝了你的约饭邀请</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="receive"    && item.result == "accept"}}'>你已同意了{{item.nickname}}的约饭邀请。</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="send" && item.result == "accept"}}'>TA同意了你的邀请，现在开始聊天吧~</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="tohello"   && item.result == "refuse"}}'>你已拒绝了请{{item.nickname}}吃饭。</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromhello" && item.result == "refuse"}}'>{{item.nickname}}已拒绝了请你吃饭。</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="tohello"   && item.result == "accept"}}'>你已同意了请{{item.nickname}}吃饭。</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromhello" && item.result == "accept"}}'>{{item.nickname}}已同意了请你吃饭。</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="audit" && item.result == "accept"}}'>你的认证视频审核已通过,可以开始赚钱啦!</text>
+            <text class='text-tip text-msg' data-index='{{index}}' wx:if='{{item.type=="audit" && item.result == "refuse"}}'>认证视频审核不通过,点击查看详情。</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromnearby" && !item.result}}'>你向附近的{{item.nickname}}发送约饭邀请</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="tonearby" && !item.result}}'>附近{{item.nickname}}向你发送约饭邀请</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="tonearby" && item.result=="accept"}}'>你同意了附近的{{item.nickname}}的约饭申请</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromnearby" && item.result=="accept"}}'>附近的{{item.nickname}}接受了你的约饭邀请</text>
+
+            <text class='text-tip text-msg' wx:if='{{item.type=="tonearby" && item.result=="refuse"}}'>你拒绝了附近的{{item.nickname}}的约饭申请</text>
+            <text class='text-tip text-msg' wx:if='{{item.type=="fromnearby" && item.result=="refuse"}}'>附近的{{item.nickname}}拒绝了你的约饭申请</text>
+
+            <view data-index='{{index}}' catchtap='refuseInvited' wx:if='{{item.type=="receive" && !item.result}}' class='invite-btn' hover-class='navigator-hover'>拒绝</view>
+            <view data-index='{{index}}' catchtap='acceptInvited' wx:if='{{item.type=="receive" && !item.result}}' class='invite-btn' hover-class='navigator-hover'>应邀</view>
+
+
+            <view data-index='{{index}}' catchtap='refuseNearby' wx:if='{{item.type=="tonearby" && !item.result}}' class='invite-btn' hover-class='navigator-hover'>拒绝</view>
+            <view data-index='{{index}}' catchtap='acceptNearby' wx:if='{{item.type=="tonearby" && !item.result}}' class='invite-btn' hover-class='navigator-hover'>应邀</view>
+
+            <view data-index='{{index}}' catchtap='notwillingInvited' wx:if='{{item.type=="tohello" && !item.result}}' class='invite-btn ' hover-class='navigator-hover'>不去</view>
+            <view data-index='{{index}}' catchtap='greetInvited' wx:if='{{item.type=="tohello" && !item.result}}' class='invite-btn' hover-class='navigator-hover'>请客</view>
+
+          </view>
+          <!--删除消息按钮-->
+        </view>
+      </view>
+       <view class="del" catchtap="del" data-index="{{index}}">删除</view> 
+
+    </view>
+  </block>
+  <view class='load-more-footer' wx:if='{{noticeArr.length!=0}}'>{{isLoading?"":(hasMore?"":"已到达底部")}}</view>
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}" wx:if='{{isLoading}}'>
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>
+</view>
+</page>

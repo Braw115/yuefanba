@@ -1,0 +1,71 @@
+<view class='recommend-list'>
+  <block wx:key='uuid' wx:for='{{hotArr}}'>
+
+    <block wx:if="{{index ===0}}">
+      <view bindtap='navToProfile' data-index='{{index}}' class='pop_top'>
+        <image src='../../img/burand@2x.png' class='pop_bg'></image>
+        <block wx:if="{{index===1}}">
+          <view class='num_bg'>
+            <text class='top-num'>{{index+1}}</text>
+          </view>
+        </block>
+        <view class='recommend-top'>
+          <view class='num_bg'>
+            <text class='top-num'>{{index+1}}</text>
+          </view>
+          <image class='avatar-top' src='{{item.avatar}}'></image>
+          <image class='icon-top' src='../../img/paihang@2x.png'></image>
+        </view>
+
+        <view class='top-info'>
+          <view>
+            <text class='top-username'>{{item.nickname}}</text>
+          </view>
+          <text class='top-currency'>{{item.popularity}}人气值</text>
+        </view>
+        <view class='top-invite' data-index='{{index}}' catchtap='invite' hover-class='navigator-hover'>约TA</view>
+      </view>
+    </block>
+
+
+    <block wx:if="{{index >0}}">
+      <view bindtap='navToProfile' data-index='{{index}}' class='pop-container'>
+        <view class='recommend-item'>
+          <block wx:if="{{index===1}}">
+            <view class='sec_bg'>
+              <text class='sec-num'>{{index+1}}</text>
+            </view>
+          </block>
+          <block wx:if="{{index===2}}">
+            <view class='thi_bg'>
+              <text class='sec-num'>{{index+1}}</text>
+            </view>
+          </block>
+          <block wx:if="{{index>2}}">
+            <view class='qita_bg'>
+              <text class='qi-num'>{{index+1}}</text>
+            </view>
+          </block>
+          <image class='avatar' src='{{item.avatar}}'></image>
+
+          <!-- <image class='icon-24' src='{{item.gender?"../../img/woman@2x.png":"../../img/sy-nan@2x.png"}}'></image> -->
+
+        </view>
+
+        <view class='center-info'>
+          <view>
+            <text class='username'>{{item.nickname}}</text>
+            <!-- <view class='avatar-info'> -->
+            <image class='icon-24' src='{{item.gender?"../../img/sy-nan@2x.png":"../../img/sy-nv@2x.png"}}'></image>
+            <!-- </view>  -->
+          </view>
+          <text class='currency'>{{item.popularity}} 人气值</text>
+        </view>
+        <view class='invite-btn' data-index='{{index}}' catchtap='invite' hover-class='navigator-hover'>约TA</view>
+      </view>
+    </block>
+  </block>
+
+  <view class='load-more-footer'>{{isLoading?"正在加载...":(hasMore?"":"已到达底部")}}</view>
+
+</view>

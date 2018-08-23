@@ -1,0 +1,98 @@
+<scroll-view class='inner' scroll-y bindscrolltolower='loadMore'>
+  <view class='top-view'>
+    <view class='top-text'>
+      <text class='top-title'>
+     {{detailData.nickname1}}和{{detailData.nickname2}}的约饭单</text>
+      <!-- 你好和{{detailData.nickname2}}的约饭单</text> -->
+
+    </view>
+    <view class='avatar-block'>
+      <view class='avatar'>
+        <image src='{{detailData.avatar1}}'></image>
+      </view>
+      <image class='arrow' src='../../img/flat-arrow.png'></image>
+      <view class='avatar'>
+        <image src='{{detailData.avatar2}}'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='down-view'>
+
+    <view class='main-view'>
+      <view class='item-row' wx:if='{{detailData.location}}'>
+        <!-- <text class='title'>餐厅</text> -->
+
+        <image class='icon' src='../../img/ct@2x.png'></image>
+        <text class='content'>{{detailData.location}}</text>
+      </view>
+      <view class='item-row' wx:if='{{detailData.location}}'>
+        <image class='icon'></image>
+        <text class='content2'>{{detailData.address}}</text>
+      </view>
+    </view>
+
+    <!-- <view class='main-view'>
+   <view class='item-row' wx:if='{{detailData.address}}' >
+   <text class='content'>{{detailData.address}}</text>
+   </view>
+  </view>  -->
+
+    <view class='main-view'>
+      <view class='item-row'>
+        <!-- <text class='title'>时间</text> -->
+        <view>
+          <image class="icon" src='../../img/shizhong@2x.png'></image>
+          <text class='content timer'>{{detailData.time}}</text>
+        </view>
+      </view>
+      <image class="icon"></image>
+      <text class='content2' wx:if='{{detailData.coin ===0}}'>赏金  <text class='coin'>{{detailData.coin}}</text> 吃货币</text>
+    </view>
+
+    <view class='bottom-view' wx:if="{{detailData.state!='on'}}">
+      <view class='comment-row'>
+        <text>评价对方 :</text>
+        <view class='star-container'>
+          <block wx:if='{{detailData.level!==null || editRank}}'>
+            <image class='star' data-rank='1' bindtap='ranking' src='{{rank<1?"../../img/star.png":"../../img/pingjia@2x.png"}}'></image>
+            <image class='star' data-rank='2' bindtap='ranking' src='{{rank<2?"../../img/star.png":"../../img/pingjia@2x.png"}}'></image>
+            <image class='star' data-rank='3' bindtap='ranking' src='{{rank<3?"../../img/star.png":"../../img/pingjia@2x.png"}}'></image>
+            <image class='star' data-rank='4' bindtap='ranking' src='{{rank<4?"../../img/star.png":"../../img/pingjia@2x.png"}}'></image>
+            <image class='star' data-rank='5' bindtap='ranking' src='{{rank<5?"../../img/star.png":"../../img/pingjia@2x.png"}}'></image>
+          </block>
+        </view>
+        <image class='icon-edit' bindtap='editComment' wx:if='{{!editRank && detailData.level===null}}' src='../../img/bainji@2x.png'></image>
+        <text wx:if='{{editRank}}' bindtap='saveComment' class='save'>保存</text>
+      </view>
+      <textarea wx:if='{{editRank}}' class='textarea' style='padding-bottom: 60rpx' placeholder-style='color:#999' bindinput='commentInput' placeholder='输入内容' maxlength='{{limit}}' auto-height>
+        <text class='counter'>{{cursor}}/{{limit}}</text>
+      </textarea>
+      <text class='textcommon' wx:if='{{detailData.level!==null}}'>{{detailData.commentcontent}}</text>
+      <view class='comment-row'>
+        <text>申述</text>
+        <view class='star-container'></view>
+        <image class='icon-edit' bindtap='editCplt' wx:if='{{!editComplaint&& detailData.appealcontent===null}}' src='../../img/bainji@2x.png'></image>
+        <text wx:if='{{editComplaint}}' bindtap='saveCplt' class='save'>保存</text>
+      </view>
+      <textarea wx:if='{{editComplaint}}' class='textarea' placeholder-style='color:#999' bindinput='complaintInput' placeholder='输入内容' auto-height>
+      </textarea>
+      <text class='textarea' wx:if='{{detailData.appealcontent!==null}}'>{{detailData.appealcontent}}</text>
+    </view>
+
+    <button class='chat-btn' wx:if="{{detailData.state=='on'}}" catchtap='goToChat'>
+      <image class='chat-img' src='../../img/lioatian@2x.png'></image>
+      <text class='chat-text'>与TA聊天</text>
+    </button>
+    <button class='chat-btn' wx:if="{{detailData.state=='off'}}" catchtap='goToChat'>
+      <image class='chat-img' src='../../img/lioatian@2x.png'></image>
+      <text class='chat-text'>聊天记录</text>
+    </button>
+   
+    <view class='return-index' >
+     <text catchtap='goToindex'>返回首页</text>
+  </view> 
+  
+  </view>
+
+</scroll-view>

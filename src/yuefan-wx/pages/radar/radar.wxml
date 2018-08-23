@@ -1,0 +1,38 @@
+<image class='bg' mode='aspectFit'  src='../../img/leidabeijing@2x.png'></image>
+<image bindtap='scanStart' class='scan' src='../../img/scan.png' mode='widthFix'></image>
+<image bindtap='scanStart' class='avatar center' src='{{avatar}}'></image>
+<view class='clear-position' catchtap='clearPosition' hover-class='navigator-hover'>
+ <image class='clear-img' src='../../img/qcwz@2x.png'></image>
+</view>
+<view class='circle-center'>
+  <block wx:for='{{nearbyArr}}' wx:key='uuid'>
+    <image catchtap='navToProfile' data-deeduuid='{{item.deeduuid}}' data-useruuid='{{item.useruuid}}' data-uuid='{{item.uuid}}' src='{{item.avatar}}' class='random' style='top:{{item.y}}rpx;left:{{item.x}}rpx;width:{{2*item.radius}}rpx;height:{{2*item.radius}}rpx'></image>
+  </block>
+</view>
+
+<view class='invite-container'>
+   <scroll-view class='invite' scroll-x='true'>
+    <image wx:for='{{inviteArr}}' wx:key='uuid' class='avatar' src='{{item.avatar}}'></image>
+  </scroll-view> 
+  <view class='tip'>
+    <text wx:if="{{inviteArr.length===0}}">暂无人应邀</text>
+    <text wx:if="{{inviteArr.length>0}}">已有{{inviteArr.length}}人应邀</text>
+ </view>
+</view>
+<view class="footer">
+<view class='contract'  wx:if='{{myNearby}}'>
+  <view class='info-row'>
+    <image class='icon' src='../../img/{{gender==1?"boy6@2x":"nv@2x"}}.png'></image>
+    <text class='name'>{{ageStr}}</text>
+  </view>
+  <view class='info-row'>
+    <image class='icon' src='../../img/ct@2x.png'></image>
+    <text class='name'>{{myNearby.restaurant}}</text>
+  </view>
+  <view class='info-row'>
+    <image class='icon' src='../../img/shizhong@2x.png'></image>
+    <text class='name'>{{timeStr}} {{myNearby.payway === 'me'?"我请客":"AA"}}</text>
+  </view>
+</view>
+</view>
+<view  class="no-deed" wx:if='{{myNearby===null}}'>您目前没有存在的订单</view>

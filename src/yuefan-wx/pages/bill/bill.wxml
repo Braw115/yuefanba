@@ -1,0 +1,30 @@
+<view class='list'>
+ <view wx:for='{{billArr}}' wx:key='{{uuid}}' class='item' catchtap="gotobilldetail" data-index='{{index}}'>
+    <view class='row'>
+      <text>交易成功</text>
+      <view>
+        <text class='red' wx:if='{{item.type == "deposit" || item.type == "paydeed" || item.type == "withdraw"}}'> -</text>
+        <text class='red' wx:if='{{item.type == "depositback" || item.type == "backdeed" || item.type == "makedeed" || item.type == "recharge"}}'> +</text>
+        <text class='red' wx:if='{{item.type !=="recharge"}}'>{{item.coin}}吃货币</text>
+        <text class='red' wx:if='{{item.type ==="recharge"}}'>{{item.coin*10}}吃货币</text>
+      </view>
+    </view>
+    <view class='row tip'>
+      <text>{{item.created}}</text>
+      <view>
+        <text wx:if='{{item.type == "deposit"}}'>提交押金</text>
+        <text wx:if='{{item.type == "paydeed"}}'>赏金花费</text>
+        <text wx:if='{{item.type == "withdraw"}}'>提现</text>
+        <text wx:if='{{item.type == "recharge"}}'>充值</text>
+        <text wx:if='{{item.type == "makedeed"}}'>赚取赏金</text>
+        <text wx:if='{{item.type == "backdeed"}}'>赏金回退</text>
+        <text wx:if='{{item.type == "depositback"}}'>押金回退</text>
+      </view>
+    </view>
+  </view>
+  <view class='load-more-footer'>{{isLoading?"":(hasMore?"":"已到达底部")}}</view>
+  <view class="weui-loadmore" hidden="{{isHideLoadMore}}" wx:if='{{isLoading}}'>
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore__tips">正在加载</view>
+  </view>
+</view>

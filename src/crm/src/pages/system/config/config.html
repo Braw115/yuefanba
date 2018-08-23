@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="pages/system/config/config.css"/>
+
+<div class="table-responsive table-bordered radio1 panel panel-default">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">配置系统参数</span>
+    </div>
+
+    <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li id='tabOne' role="presentation" class="active">
+                <a href="#unit-price" role="tab" data-toggle="tab">充值相关设置</a>
+            </li>
+            <li id='tabTwo' role="presentation">
+                <a href="#deposit-box" role="tab" data-toggle="tab">诚意金设置</a>
+            </li>
+            <li id='tabThree' role="presentation">
+                <a href="#teme-out" role="tab" data-toggle="tab">订单超时设置</a>
+            </li>
+            <li id='tabFour' role="presentation">
+                <a href="#switch" role="tab" data-toggle="tab">短信通知设置</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content config">
+            <!--充值设置-->
+            <div role="tabpanel" class="tab-pane active" id="unit-price">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">充值默认选项：</label>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" min=0 class="form-control" value="10" id="recharge1"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" min=0 class="form-control" value="20" id="recharge2"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" min=0 class="form-control" value="50" id="recharge3"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" min=0 class="form-control" value="100" id="recharge4"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label">吃货币</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proportion" class="col-sm-2 control-label">兑换比例：</label>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" min=0 class="form-control" value="10" id="proportion"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label">吃货币 = 1 元 </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="least" class="col-sm-2 control-label">最低提现：</label>
+                        <div class="col-sm-2">
+                            <input autocomplete="off" type="number" value="10" min=0 class="form-control"
+                                   id="least" placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label">吃货币</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <button type="button" class="btn btn-success pull-right" id="save_pay">保存设置</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 诚意金设置 -->
+            <div role="tabpanel" class="tab-pane" id="deposit-box">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="orderstimeout" class="col-sm-3 control-label">最低诚意金 ：</label>
+                        <div class="col-xs-2">
+                            <input autocomplete="off" type="number" value="10" min=0 class="form-control" id="deposit"
+                                   placeholder="吃货币" verify='bignum'>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label">吃货币</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-success" id="save_deposit">保存设置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 兑换比例设置 -->
+            <div role="tabpanel" class="tab-pane" id="teme-out">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="orderstimeout" class="col-sm-3 control-label">订单超时时间：</label>
+                        <div class="col-xs-2">
+                            <input autocomplete="off" type="number" value="10" min=0 class="form-control" id="orderstimeout"
+                                   placeholder="天" verify='bignum'>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label">天</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-success" id="save_timer">保存设置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--短信开关设置-->
+            <div role="tabpanel" class="tab-pane" id="switch">
+                <form class="form-horizontal">
+                    <div id="save_config">
+                        <div class="form-group">
+                            <label for="secret" class="col-sm-3 control-label">Secret设置：</label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control" id="secret" placeholder="请输入新的secret"
+                                       verify='required'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="appkey" class="col-sm-3 control-label">Key设置：</label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control" id="appkey" placeholder="请输入新的key"
+                                       verify='required'>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="templateid" class="col-sm-3 control-label">验证码模板设置：</label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control" id="templateid" placeholder="请输入新的验证码模板ID"
+                                       verify='required'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            <button style="float:right" type="button" class="btn btn-success" id="save_mail">保存设置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

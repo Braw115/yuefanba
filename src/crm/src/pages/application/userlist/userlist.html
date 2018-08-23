@@ -1,0 +1,308 @@
+<link rel="stylesheet" href="pages/application/userlist/userlist.css"/>
+
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">×</a>
+    <strong>注意 : </strong> 修改数据后, 小程序用户端的数据也会随之改变 ! 小程序注册的用户/用户头像不可在后台删除.
+</div>
+
+<div class="table-responsive table-bordered radio1 panel panel-default">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">APP用户列表</span>
+        <button class="btn btn-purple pull-right" id="addAppUser">添加app用户</button>
+    </div>
+
+    <div class="panel-body">
+        <table id="tableLi" class="table table-striped table-bordered table-hover"
+               width="100%">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户头像</th>
+                <th>昵称</th>
+                <th>手机</th>
+                <th>认证视频</th>
+                <th>相册</th>
+                <th>个性轮播图</th>
+                <th>创建时间 &nbsp;
+                    <i class="fa fa-sort-amount-asc" onclick="sortBy('desc',this ,'created')"></i>
+                    <i class="fa fa-sort-amount-desc" onclick="sortBy('asc',this,'created')"></i>
+                </th>
+                <th>人气值 &nbsp;
+                    <i class="fa fa-sort-amount-asc" onclick="sortBy('desc',this,'popularity')"></i>
+                    <i class="fa fa-sort-amount-desc" onclick="sortBy('asc',this,'popularity')"></i>
+                </th>
+                <th>出生年月 &nbsp;
+                    <i class="fa fa-sort-amount-asc" onclick="sortBy('desc',this,'birthday')"></i>
+                    <i class="fa fa-sort-amount-desc" onclick="sortBy('asc',this,'birthday')"></i>
+                </th>
+                <th>性别</th>
+                <th>身高</th>
+                <th>剩余吃货币</th>
+                <th>
+                    <select id="selectStatus" class="form-control" onchange="changeData()">
+                        <option value="all">验证视频状态</option>
+                        <option value="unupload">未上传</option>
+                        <option value="uncheck">未审核</option>
+                        <option value="accept">审核通过</option>
+                        <option value="refuse">审核不通过</option>
+                    </select>
+                </th>
+                <th>openid</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="ul-add"></tbody>
+        </table>
+    </div>
+</div>
+
+<!--资源预览-->
+<div class="modal fade" id="resourcesModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                文件编辑
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="video-box">
+                    认证视频
+                    <form class="addVideoBtn attestvideoBtn" action="" method="post" enctype="multipart/form-data">
+                        <a style="display:inline-block;position:relative;overflow: hidden;vertical-align:middle"
+                           data-toggle="tooltip" data-container="body" title="上传验证视频">
+                            <button class="btn btn-purple fileinput-button" type="button">
+                                <i class="fa fa-upload"></i> 上传验证视频
+                            </button>
+                            <input type="file" name="file" onchange="uploadFile()"
+                                   style="position:absolute;top:0;left:0;font-size:34px; opacity:0">
+                        </a>
+                    </form>
+                </div>
+                <div class="row album-box">
+                    <div class="uploadBox col-sm-10 col-sm-offset-1">
+                        <ul class="editModalPosi personalAlbumPics">
+                            <div class="modal-subtitle">个人相册</div>
+                        </ul>
+                        <span class="editImg">
+                            <form class="albumBtn" action="" method="post"
+                                  enctype="multipart/form-data">
+                                <a class="add" href="javascript:">
+                                    <span>+</span>
+                        <div class="gray">添加相册图片</div>
+                        <input type="file" multiple onclick="this.value=''" class="editInput" onchange="uploadFile()"
+                               accept="image/gif,image/jpeg,image/jpg,image/png,img/bmp" name="file">
+                        </a>
+                        </form>
+                        </span>
+                    </div>
+                </div>
+                <div class="row personality-box">
+                    <div class="uploadBox col-sm-10 col-sm-offset-1">
+                        <ul class="editModalPosi personalityPics">
+                            <div class="modal-subtitle">个性展示轮播图</div>
+                        </ul>
+                        <span class="editImg">
+                            <form class="personalityBtn" action="" method="post"
+                                  enctype="multipart/form-data">
+                                <a class="add" href="javascript:">
+                                    <span>+</span>
+                        <div class="gray">添加个性轮播图</div>
+                        <input type="file" onclick="this.value=''" class="editInput" onchange="uploadFile()"
+                               accept="image/gif,image/jpeg,image/jpg,image/png,img/bmp" name="file">
+                        </a>
+                        </form>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--添加/编辑App用户-->
+<div class="modal fade" id="addAppUserModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                用户资料
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">昵称</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" id="nickname" class="form-control" value="" verify="strlen 1 16"
+                                   placeholder="请输入昵称">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入1-16字节昵称">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">手机号</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="number" id="phone" class="form-control" autocomplete='tel-national' verify="username"
+                                   placeholder="请输入手机号">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入手机号">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">性别</label>
+                        <div class="col-md-6 col-sm-6">
+                            <select type="text" id="gender" class="form-control">
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择性别">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">身高</label>
+                        <div class="col-sm-6">
+                            <input type="number" id="height" class="form-control discount" value="165.50"
+                                   placeholder="请输入身高" verify="fixed2num">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入身高">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">出生日期</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="birthday" class="form-control discount layui-input"
+                                   placeholder="请输入出生日期" style="border-radius: 4px;" verify="required" readonly>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="选择出生日期">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitude" class="col-xs-3 control-label">经度</label>
+                        <div class="col-xs-6">
+                            <input autocomplete="off" type="text" id="longitude" value="113.81423333333333"
+                                   class="form-control" verify="required"/>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                      title="用户在的的经度,范围-180~180">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="latitude" class="col-xs-3 control-label">纬度</label>
+                        <div class="col-xs-6">
+                            <input autocomplete="off" type="text" id="latitude" value="22.63323133332222"
+                                   class="form-control" verify="required"/>
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom"
+                                      title="用户所在的纬度,范围-90~90">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">人气值</label>
+                        <div class="col-sm-6">
+                            <input type="number" id="popularity" class="form-control" value="0"
+                                   placeholder="请输入人气值" verify="num">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入人气值">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 col-sm-3 control-label">剩余吃货币</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input type="number" id="balance" class="form-control" value="" verify="num"
+                                   placeholder="请输入剩余吃货币" value="0">
+                        </div>
+                        <div class="col-xs-3 tip-icons">
+                                <span class="icon-tip" data-toggle="tooltip" data-placement="bottom" title="输入数值">
+                                    <i class="fa fa-question-circle"></i>
+                                </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span class="tip"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-purple btn-modal" onclick="submitAddData()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--评价列表-->
+<div class="modal fade" id="evaluationModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                评价用户 : <strong id="appUser"></strong>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table id="evaluationTable"
+                       class="table table-striped table-bordered table-hover table-style container-fluid"
+                       width="100%">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>评价者昵称</th>
+                        <th>评价者手机</th>
+                        <th>订单uuid</th>
+                        <th>评价内容</th>
+                        <th>评价星级</th>
+                        <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody class="ul-add"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--评价列表-->
+<div class="modal fade" id="refuseReasonModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                发送审核不通过原因:
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" cols="30" rows="7" placeholder="请输入审核不通过原因"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-purple" onclick="submitRefuseReason()">发 送</button>
+            </div>
+        </div>
+    </div>
+</div>

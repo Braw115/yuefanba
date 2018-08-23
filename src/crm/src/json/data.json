@@ -1,0 +1,276 @@
+{
+  "data": {
+    "userlist": [
+      {
+        "uuid": "111",
+        "album": [
+          "1.png",
+          "2.png",
+          "3.png",
+          "4.png"
+        ],
+        "nickname": "轩墨宝宝",
+        "phone": "183131111",
+        "personality": [
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg"
+        ],
+        "popularity": "998899",
+        "avatar": "xuanmo.png",
+        "longitude": "纬度",
+        "latitude": "经度",
+        "attestvideo": "test-video.mp4",
+        "sex": "男",
+        "age": "15",
+        "status": "已通过",
+        "height": "158",
+        "balance": "110",
+        "role": null,
+        "password": "123456",
+        "created": "2017:11:11:03"
+      },
+      {
+        "uuid": "111",
+        "album": [
+          "3.png",
+          "1.png",
+          "4.png",
+          "2.png",
+          "3.png",
+          "1.png",
+          "4.png",
+          "2.png",
+          "3.png"
+        ],
+        "nickname": "轩墨宝宝",
+        "phone": "183131111",
+        "personality": [
+          "1.jpg",
+          "3.jpg",
+          "5.jpg",
+          "2.jpg",
+          "4.jpg"
+        ],
+        "popularity": "998899",
+        "avatar": null,
+        "longitude": "纬度",
+        "latitude": "经度",
+        "attestvideo": "test-video.mp4",
+        "sex": "男",
+        "age": "15",
+        "status": "未审核",
+        "height": "158",
+        "balance": "110",
+        "role": null,
+        "password": "123456",
+        "created": "2017:11:11:03"
+      }
+    ],
+    "adminlist": [
+      {
+        "uuid": "111",
+        "album": null,
+        "nickname": "轩墨宝宝",
+        "phone": "183131111",
+        "personality": null,
+        "popularity": null,
+        "avatar": null,
+        "longitude": null,
+        "latitude": null,
+        "attestvideo": null,
+        "sex": null,
+        "age": null,
+        "status": null,
+        "height": null,
+        "balance": null,
+        "role": "admin",
+        "password": "123456",
+        "created": "2017:11:11:03"
+      }
+    ],
+    "appointment": [
+      {
+        "uuid": "fadfasdfae",
+        "useruuid": "fadfasae",
+        "address": "蓝束楼下饭堂",
+        "restaurant": "蓝束餐厅",
+        "payway": "AA制",
+        "deposit": "20",
+        "type": "我要约饭",
+        "state": "true",
+        "onetoone": "true",
+        "istimeout": "false",
+        "result": "both",
+        "mealtime": "2017:11:11:03",
+        "created": "2017:11:11:03"
+      }
+    ],
+    "order": [
+      {
+        "uuid": "111",
+        "deeduuid1": "ID契约单1",
+        "deeduuid2": "ID契约单2",
+        "state": "on",
+        "type": "normal",
+        "coin": "88",
+        "player": "轩墨宝宝",
+        "starttime": "2017:11:11:03",
+        "location": "蓝束楼下饭堂",
+        "created": "2017:11:11:03"
+      }
+    ],
+    "evaluation": [
+      {
+        "useruuid": "评价对象",
+        "evaluator": "评价者",
+        "orderuuid": "订单uuid",
+        "content": "评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容",
+        "level": "评价星级",
+        "created": "2017:11:11:03"
+      },
+      {
+        "useruuid": "评价对象2",
+        "evaluator": "评价者2",
+        "orderuuid": "订单uuid2",
+        "content": "评价内容2",
+        "level": "评价星级2",
+        "created": "2017:11:11:33"
+      }
+    ],
+    "systeam": [
+      {
+        "created": "2017-11-06T06:43:48.943Z",
+        "key": "remind",
+        "modified": "2017-12-23T09:59:09.152Z",
+        "value": {
+          "secret": "233312dda3131",
+          "appkey": "adasadasdasdas",
+          "templateid": "fsdfasdfsdfds"
+        }
+      },
+      {
+        "created": "2017-11-06T06:43:48.943Z",
+        "key": "pay",
+        "modified": "2017-12-23T09:59:09.152Z",
+        "value": {
+          "proportion": "11",
+          "recharge": [
+            "100",
+            "200",
+            "500",
+            "1000"
+          ],
+          "least": "101"
+        }
+      },
+      {
+        "created": "2017-11-06T06:43:48.943Z",
+        "key": "orderstimeout",
+        "modified": "2017-12-23T09:59:09.152Z",
+        "value": {
+          "timeout": "72"
+        }
+      }
+    ],
+    "operationRecord": [
+      {
+        "uuid": "111",
+        "useruuid": "操作人uuidasdfadsf",
+        "phone": "182225****",
+        "ip": "操作所用ip",
+        "operation": "修改系统默认充值项.",
+        "created": "创建时间"
+      }
+    ],
+    "paymentRecords": [
+      {
+        "uuid": "111",
+        "useruuid": "记录产生人uuid",
+        "type": "支付类型",
+        "deeduuid": "契约单uuid",
+        "coin": "交易数量",
+        "orderuuid": "订单uuid",
+        "created": "2017-12-23T09:59:09.152Z"
+      }
+    ],
+    "news": [
+      {
+        "useruuid": "111fdafdsf",
+        "fromdeeduuid": "发送者契约uuid",
+        "todeeduuid": "接收者契约uuid",
+        "reason": "原因",
+        "type": "消息类型",
+        "result": "消息结果",
+        "created": "2017-12-23T09:59:09.152Z"
+      },
+      {
+        "useruuid": "22fdafdsf",
+        "fromdeeduuid": "发送者契约uuid",
+        "todeeduuid": "接收者契约uuid",
+        "reason": "原因",
+        "type": "消息类型",
+        "result": "消息结果",
+        "created": "2017-12-23T09:59:09.152Z"
+      },
+      {
+        "useruuid": "333111fdafdsf",
+        "fromdeeduuid": "发送者契约uuid",
+        "todeeduuid": "接收者契约uuid",
+        "reason": "原因",
+        "type": "消息类型",
+        "result": "消息结果",
+        "created": "2017-12-23T09:59:09.152Z"
+      }
+    ],
+    "banner": [
+      {
+        "uuid": "111",
+        "img": "1.jpg",
+        "url": "http://localhost:63342/src/main.html#/application/banner/banner",
+        "description": "描述",
+        "priority": "1",
+        "state": "true",
+        "created": "创建时间"
+      },
+      {
+        "uuid": "111",
+        "img": "2.jpg",
+        "url": "http://localhost:63342/src/main.html#/application/banner/banner",
+        "description": "描述",
+        "priority": "1",
+        "state": "false",
+        "created": "创建时间"
+      },
+      {
+        "uuid": "111",
+        "img": "3.jpg",
+        "url": "http://localhost:63342/src/main.html#/application/banner/banner",
+        "description": "描述",
+        "priority": "1",
+        "state": "true",
+        "created": "创建时间"
+      },
+      {
+        "uuid": "111",
+        "img": "4.jpg",
+        "url": "http://localhost:63342/src/main.html#/application/banner/banner",
+        "description": "描述",
+        "priority": "1",
+        "state": "true",
+        "created": "创建时间"
+      },
+      {
+        "uuid": "111",
+        "img": "5.jpg",
+        "url": "http://localhost:63342/src/main.html#/application/banner/banner",
+        "description": "描述",
+        "priority": "1",
+        "state": "true",
+        "created": "创建时间"
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="pages/statistics/operationrecord/operationrecord.css"/>
+
+<div class="table-responsive table-bordered radio1 panel panel-default" style="overflow-x: hidden;">
+    <div class="panel-heading">
+        <span style="font-size:24px;margin-right: 15px">crm操作统计列表</span>
+        <button class="btn btn-purple pull-right" onclick="selectOperationRcd()">查询</button>
+        <input type="text" id="endtime" class="form-control layui-input pull-right" style="border-radius: 4px;"
+               verify="required" readonly>
+        <span class="pull-right">_</span>
+        <input type="text" id="starttime" class="form-control layui-input pull-right" style="border-radius: 4px;"
+               verify="required" readonly>
+    </div>
+    <div class="panel-body">
+        <table id="tableLi" class="table table-striped table-bordered table-hover table-style container-fluid"
+               width="100%">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户uuid</th>
+                <th>手机</th>
+                <th>操作所用ip</th>
+                <th>操作内容</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="ul-add"></tbody>
+        </table>
+    </div>
+</div>

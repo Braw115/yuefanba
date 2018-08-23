@@ -1,0 +1,55 @@
+<!--pages/bill-detail/msg-detail.wxml-->
+<!-- <text>pages/bill-detail/msg-detail.wxml</text> -->
+<view class='contain'>
+  <view class="main-info">
+    <view class='title' wx:if="{{orderuuid!==null}}">{{user1}}和{{user2}}的约饭单</view>
+    <view class='title' wx:if="{{orderuuid===null}}">
+      <text wx:if='{{billtype == "deposit"}}'>提交押金</text>
+      <text wx:if='{{billtype == "paydeed"}}'>赏金花费</text>
+      <text wx:if='{{billtype == "withdraw"}}'>提现</text>
+      <text wx:if='{{billtype == "recharge"}}'>充值</text>
+      <text wx:if='{{billtype == "makedeed"}}'>赚取赏金</text>
+      <text wx:if='{{billtype == "backdeed"}}'>赏金回退</text>
+      <text wx:if='{{billtype == "depositback"}}'>押金回退</text>
+    </view>
+    <view class='item'></view>
+  </view>
+  <view class="main-info">
+    <view class='item-title'>押金</view>
+     <view class='item' wx:if='{{billtype !== "recharge"}}'>{{coin}}吃货币</view> 
+    <view class='item' wx:if='{{billtype == "recharge"}}'>{{coin*10}}吃货币</view>
+  </view>
+  <view class="main-info">
+    <view class='item-title'>时间</view>
+    <view class='item'>{{created}}</view>
+  </view>
+  <view class="main-info" wx:if="{{orderuuid!==null}}">
+    <view class='item-title'>餐厅</view>
+    <view class='item'>{{location}}</view>
+  </view>
+  <view class="main-info" wx:if="{{orderuuid!==null}}">
+    <view class='item-title'>地址</view>
+    <view class='item'>{{address}}</view>
+  </view>
+   <view class="main-info" wx:if="{{orderuuid!==null}}">
+    <view class='item-title'>交易</view>
+    <view class='item'>{{payway==='me'? nickname+'请客':'AA制'}}</view>
+  </view> 
+  <view class="main-info">
+    <view class='item-title'>状态</view>
+    <view class='item'>
+      <text wx:if='{{billtype == "deposit"}}'>提交押金</text>
+      <text wx:if='{{billtype == "paydeed"}}'>赏金花费</text>
+      <text wx:if='{{billtype == "withdraw"}}'>提现</text>
+      <text wx:if='{{billtype == "recharge"}}'>充值</text>
+      <text wx:if='{{billtype == "makedeed"}}'>赚取赏金</text>
+      <text wx:if='{{billtype == "backdeed"}}'>赏金回退</text>
+      <text wx:if='{{billtype == "depositback"}}'>押金回退</text>
+    </view>
+  </view>
+  <view class="main-info" wx:if='{{description!==null}}'>
+    <view class='item-title'>描述</view>
+    <view class='item'>{{description}}</view>
+  </view>
+
+</view>

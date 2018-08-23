@@ -1,0 +1,66 @@
+<movable-area class='movable-area' wx:if='{{ready}}'>
+  <block wx:for='{{matchArr}}' wx:key='{{index}}'>
+
+    <view wx:if='{{current<index}}' class='card' style='width:{{viewWidth}}rpx;height:{{viewHeight}}rpx;z-index:{{10000-index}};position:absolute;left:{{windowWidth+42/px2rpx}}px;top:{{windowHeight + 30/px2rpx}}px'>
+      <image class='match-img' src='{{imageUrl+ (item.personality[0]?item.personality[0]:item.avatar)}}' mode='aspectFill'></image>
+      <view class='card-content'>
+        <text class='name'>{{item.nickname}}</text>
+        <view class='extra'>
+          <view class='info-block'>
+            <image src='../../img/girl-tp.png'></image>
+            <text>{{item.age}}岁</text>
+          </view>
+          <view class='info-right'>
+            <image class='view-icon' src='../../img/eye.png'></image>
+            <text class='view-num'>2065</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <movable-view wx:elif='{{current===index}}' class='card' style='width:{{viewWidth}}rpx;height:{{viewHeight}}rpx;z-index:{{10000-index}}' bindtouchstart='touchstart' bindtouchend='touchend' bindtouchmove='touchmove' x='{{current===index?x:initX}}' y='{{current===index?y:initY}}'
+      direction='all' friction='1' out-of-bounds='true' damping='30' inertia='true'>
+      <image class='match-img' src='{{item.personality[0]?item.personality[0]:item.avatar}}' mode='aspectFill'></image>
+      <view class='card-content'>
+        <text class='name'>{{item.nickname}}</text>
+        <view class='extra'>
+          <view class='info-block'>
+            <image src='../../img/girl-tp.png'></image>
+            <text>{{item.age}}岁</text>
+          </view>
+          <view class='info-right'>
+            <image class='view-icon' src='../../img/eye.png'></image>
+            <text class='view-num'>2065</text>
+          </view>
+        </view>
+      </view>
+    </movable-view>
+  </block>
+
+  <view class='card empty-container' style='width:{{viewWidth}}rpx;height:{{viewHeight}}rpx;position:absolute;left:{{windowWidth+42/px2rpx}}px;top:{{windowHeight + 30/px2rpx}}px'>
+    <image class='match-img' src='../../img/bg-dot.png' mode='aspectFill'></image>
+    <view class='empty-content'>
+      <image class='empty-img' src='../../img/unhappy.png'></image>
+      <text class='empty-tip'>没有更多了！</text>
+    </view>
+    <view class='card-content'></view>
+  </view>
+  <image class='border' mode='scaleToFill' style='left:{{windowWidth+44/px2rpx}}px;top:{{windowHeight + (30+viewHeight)/px2rpx}}px' src='../../img/border.png'></image>
+  <view class='bottom-view' style='left:{{windowWidth}}px;top:{{windowHeight + 900/px2rpx}}px;width:{{windowWidth}}px'>
+
+    <view class='like-info'>
+      <text>您已邀请{{likeArr.length}}位（最多10位）</text>
+      <view class='avatar-array' style='margin-left:{{-4*likeArr.length+4}}rpx'>
+        <image wx:for='{{likeArr}}' wx:key='{{index}}' style='z-index:{{index}};left:{{4*index}}rpx' class='avatar' src='{{item.avatar}}'></image>
+      </view>
+    </view>
+
+    <view class='bottom'>
+      <image class='btn {{dislike?"active":""}}' bindtap='btnTap' data-type='dislike' src='../../img/quxiao-@2x.png'></image>
+      <image class='btn {{like?"active":""}}' bindtap='btnTap' data-type='like' src='../../img/aixin@2x.png'></image>
+    </view>
+  </view>
+</movable-area>
+<view class='full-modal' wx:if='{{likeArr.length>=10}}'>
+  <view class='full-tip'>最多可邀请10位!</view>
+</view>

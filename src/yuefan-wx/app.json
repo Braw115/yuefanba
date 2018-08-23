@@ -1,0 +1,67 @@
+{
+  "pages": [
+    "pages/splash/splash",
+    "pages/index/index",
+    "pages/about-us/about-us",
+    "pages/bill/bill",
+    "pages/chat/chat",
+    "pages/contract/contract",
+    "pages/edit-profile/edit-profile",
+    "pages/favorites/favorites",
+    "pages/invite/invite",
+    "pages/match/match",
+    "pages/message/message",
+    "pages/mine/mine",
+    "pages/modify-phone/phase-one",
+    "pages/modify-phone/phase-two",
+    "pages/order/order",
+    "pages/order-detail/order-detail",
+    "pages/popular/popular",
+    "pages/profile/profile",
+    "pages/radar/radar",
+    "pages/recharge/recharge",
+    "pages/setting/setting",
+    "pages/start/start",
+    "pages/token/token",
+    "pages/withdraw/withdraw",
+    "pages/msg-detail/msg-detail",
+    "pages/protocol/protocol",
+    "pages/deed/deed",
+    "pages/bill-detail/bill-detail",
+    "pages/deed-detail/deed-detail",
+    "pages/link-to/link-to"
+  ],
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "selectedColor": "#fe417c",
+    "color": "#999999",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/shouye2@2x(1).png",
+        "selectedIconPath": "img/shouye@2x.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/invite/invite",
+        "iconPath": "img/yuefang@2x.png",
+        "selectedIconPath": "img/yuefang2@2x.png",
+        "text": "约饭"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "img/wode@2x(1).png",
+        "selectedIconPath": "img/wode2@2x(1).png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "enablePullDownRefresh": false,
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fe417c",
+    "navigationBarTitleText": "约饭吧",
+    "navigationBarTextStyle": "#fe417c"
+  }
+}

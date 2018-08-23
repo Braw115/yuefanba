@@ -1,0 +1,89 @@
+/* pages/mine/mine.wxss */
+
+page {
+  background-color: #f3f3f3;
+}
+
+.list {
+  background: #fff;
+  color: #333;
+  height: 875rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx 0 30rpx;
+  line-height: 109rpx;
+  border-bottom: 1px solid #eee;
+  margin: 0rpx 0rpx 0rpx 30rpx;
+}
+
+.avatar {
+  width: 114rpx;
+  height: 114rpx;
+  border-radius: 50%;
+  
+}
+
+#profile {
+  background: #ffffff;
+  height: 218rpx;
+}
+
+.profile-text {
+  /* display: flex; */
+  flex-direction: column;
+  flex: 1;
+  line-height: 1;
+}
+.profile-main .icon{
+   width: 26rpx;
+   height: 26rpx;
+   margin-left: 5rpx;
+}
+.profile-main{
+  margin-left: 135rpx;
+  margin-top: -40rpx;
+}
+
+.profile-sex{
+  color: #999999;
+  font-size: 32rpx;
+  margin-left: 15rpx;
+}
+
+ .profile-main .title {
+  font-size: 46rpx;
+  font-weight: bold;
+  color: #666666;
+  position: absolute;
+  top: 70rpx;
+  left: 200rpx;
+ 
+}
+
+.profile-text .subtitle {
+  font-size: 34rpx;
+  color: #333;
+}
+
+.item .item-text {
+  flex: 1;
+  font-size: 34rpx;
+  color: #343434;
+}
+
+.item .arrow-right {
+  width: 18rpx;
+  height: 30rpx;
+}
+.has-msg {
+  position: relative;
+  bottom: 390rpx;
+  left: 30rpx;
+  width: 14rpx;
+  height: 14rpx;
+  background: red;
+  border-radius: 50%;
+}

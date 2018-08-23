@@ -1,0 +1,41 @@
+<!-- <view class='reason' wx:if='{{btntype=="audit" && reason}}'> {{reason}}</view> -->
+<view class='detail-box' wx:if='{{btntype!="audit"}}'>
+  <view class='top-view'>
+    <view class='top-text'>
+      <text class='top-title'>{{nickname}}的约饭单</text>
+
+    </view>
+    <view class='avatar-block'>
+      <view class='avatar' bindtap='toPersonalCenter'>
+        <image src='{{avatar}}'></image>
+      </view>
+    </view>
+  </view>
+  <view class='main-view'>
+    <view class='item-row'>
+      <view class='title' wx:if='{{detailData.restaurant != "null" || detailData.address != "null"}}'>
+        <image class='res-icon' src='../../img/ct@2x.png'></image>
+        <!-- <view class='content-address'> -->
+          <text class='content'>{{restaurant}}</text>
+          <view class='address'>{{address}}</view>
+        <!-- </view> -->
+      </view>
+    </view>
+
+    <view class='item-row'>
+      <image class='clock-icon' src='../../img/shizhong@2x.png'></image>
+      <text class='content timer'>{{created}}</text>
+    </view>
+
+    <view class='item-row'>
+      <!-- <text wx:if='{{detailData.type=="spend"}}'>赏金 <text class='coin'>{{detailData.deposit}}</text></text> -->
+      <image class='clock-icon'></image>
+      <text class='content-coin' wx:if='{{detailData.type=="spend"}}'>赏金 <text class='coin'>{{getdeposit}}</text> 吃货币</text>
+      <text class='content-coin' wx:if='{{detailData.type=="make"}}'>
+       理想赏金  <text class='coin'> {{getdeposit[0]}} ~ {{getdeposit[1]}} </text> 吃货币
+      </text>
+    </view>
+
+  </view>
+  <view catchtap='invite' class='invite-btn' hover-class='navigator-hover'>应邀</view>
+</view> 
